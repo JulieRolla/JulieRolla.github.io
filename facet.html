@@ -746,6 +746,12 @@
     
     // Close dropdowns when clicking outside
     document.addEventListener('click', function(e) {
+      // Stop if the click is anywhere inside a dropdown
+      if (e.target.closest('.dropdown-content')) {
+        e.stopPropagation();
+        return;
+      }
+      
       if (!e.target.closest('.dropdown')) {
         document.querySelectorAll('.dropdown.active').forEach(d => {
           d.classList.remove('active');
