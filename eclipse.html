@@ -216,10 +216,13 @@
       margin-top: 2.5rem;
     }
 
+    #who {
+      max-width: 960px;
+    }
+
     .people-grid {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
       gap: 1.5rem;
       margin-top: 1.5rem;
     }
@@ -231,7 +234,6 @@
       padding: 1.2rem;
       text-align: center;
       transition: transform 0.2s, box-shadow 0.2s;
-      flex: 0 0 220px;
     }
 
     .person-card:hover {
@@ -467,6 +469,7 @@
     @media (max-width: 800px) {
       .nav-inner { flex-direction: column; align-items: flex-start; gap: 0.35rem; }
       .nav-links { flex-wrap: wrap; gap: 0.75rem; }
+      .people-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
       .paper-link { padding: 0.9rem; gap: 0.8rem; }
       .paper-icon-box { width: 34px; height: 34px; }
       .paper-title { font-size: 0.9rem; }
