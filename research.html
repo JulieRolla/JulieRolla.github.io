@@ -620,6 +620,7 @@
         
         // Toggle current dropdown
         dropdown.classList.toggle('active');
+        e.stopPropagation();
         e.preventDefault();
       });
     });
