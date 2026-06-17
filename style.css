@@ -252,6 +252,35 @@ footer {
   height: 4px !important;
 }
 
+@media (max-width: 800px) {
+  .nav-inner {
+    flex-direction: column !important;
+    align-items: center !important;
+    gap: 0.35rem !important;
+  }
+
+  .nav-links {
+    flex-wrap: wrap !important;
+    justify-content: center !important;
+    gap: 0.75rem !important;
+  }
+
+  .top-nav .dropdown {
+    position: static !important;
+  }
+
+  .top-nav .dropdown-content {
+    left: 50% !important;
+    right: auto !important;
+    top: 100% !important;
+    width: min(calc(100vw - 2rem), 320px) !important;
+    min-width: 0 !important;
+    max-width: calc(100vw - 2rem) !important;
+    box-sizing: border-box !important;
+    transform: translateX(-50%) !important;
+  }
+}
+
 main #intro > h2,
 main .page-intro > h2 {
   font-family: "Orbitron", system-ui, sans-serif !important;
