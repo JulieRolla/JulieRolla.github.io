@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Nebulous – Why Nebulous?</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&family=Space+Grotesk:wght@400;500&display=swap" rel="stylesheet">
+
+  <style>
+    /* === Global background (galaxy) === */
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.6; /* Increased line-height for readability */
+      color: #f4f4ff;
+      background:
+        radial-gradient(circle at 15% 0%, #6933c7 0, transparent 55%),
+        radial-gradient(circle at 80% 100%, #00b7ff 0, transparent 55%),
+        radial-gradient(circle at 10% 100%, #24185c 0, #020317 55%);
+      background-attachment: fixed;
+    }
+
+    main section {
+      max-width: 1000px; /* Widened slightly for grid layout */
+      margin: 0 auto;
+      padding: 2rem 1.5rem;
+      /* Removed the big background container to allow split cards */
+      margin-top: 1.5rem;
+      margin-bottom: 2rem;
+    }
+
+    a {
+      color: #90d8ff;
+      text-decoration: none;
+      transition: color 0.2s ease;
+    }
+    
+    a:hover {
+      color: #ffffff;
+      text-decoration: underline;
+    }
+
+    /* === Navigation bar === */
+    .top-nav {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      background: #050816;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.6);
+    }
+
+    .nav-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.6rem 1.5rem;
+    }
+
+    .nav-logo {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      text-decoration: none;
+    }
+
+    .nav-logo-icon {
+      height: 30px;
+      width: 30px;
+      border-radius: 50%;
+      background:
+        radial-gradient(circle at 30% 30%, #ffffff 0, rgba(255, 255, 255, 0.05) 35%, transparent 70%),
+        radial-gradient(circle, rgba(143, 113, 255, 0.9), rgba(143, 113, 255, 0.1) 65%, transparent 90%);
+      box-shadow: 0 0 12px rgba(143, 113, 255, 0.9);
+      flex-shrink: 0;
+    }
+
+    .nav-logo-text {
+      font-family: "Orbitron", system-ui, sans-serif;
+      font-size: 1rem;
+      font-weight: 700;
+      background: linear-gradient(120deg, #ffb347, #ff6fd8, #9b5cff, #24c1ff);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 1.4rem;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: #e1e6ff;
+      font-size: 0.92rem;
+      padding: 0.3rem 0;
+    }
+
+    .top-nav a:hover { text-decoration: none; }
+
+    .nav-links a:hover {
+      color: #ffffff;
+      text-shadow: 0 0 8px rgba(144, 216, 255, 0.7);
+      text-decoration: none;
+    }
+
+    .dropdown { position: relative; display: inline-block; }
+
+    .dropbtn {
+      border: none;
+      background: transparent;
+      font: inherit;
+      color: #e1e6ff;
+      font-size: 0.92rem;
+      cursor: pointer;
+      padding: 0.3rem 0;
+    }
+
+    .dropbtn:hover {
+      color: #ffffff;
+      text-shadow: 0 0 8px rgba(144, 216, 255, 0.7);
+    }
+
+    /* === Dropdown Styles === */
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      left: 0;
+      background-color: #05001a;
+      min-width: 220px;
+      box-shadow: 0 12px 30px rgba(0,0,0,0.5);
+      border-radius: 0.6rem;
+      z-index: 30;
+      padding: 0.4rem 0;
+      border: 1px solid rgba(144, 216, 255, 0.35);
+    }
+
+    .research-menu { min-width: 320px; }
+
+    .dropdown-content a {
+      display: block;
+      padding: 0.45rem 0.9rem;
+      font-size: 0.9rem;
+      color: #e4e9ff;
+      text-decoration: none;
+      white-space: nowrap;
+      transition: none;
+    }
+
+    .dropdown-content a:hover {
+      background: radial-gradient(circle at 0 0, rgba(255, 111, 216, 0.3), transparent 60%);
+      color: #ffffff;
+      text-decoration: none;
+    }
+
+    .dropdown:hover .dropdown-content { display: block; }
+
+    .dropdown-project-link { padding-top: 0.5rem; padding-bottom: 0.5rem; }
+
+    .dropdown-project-title {
+      display: block;
+      font-size: 0.9rem;
+      font-weight: 500;
+    }
+
+    .dropdown-project-subtitle {
+      display: block;
+      font-size: 0.78rem;
+      opacity: 0.9;
+      margin-top: 0.12rem;
+      color: #b9c3ff;
+      white-space: normal;
+    }
+
+    .nav-accent {
+      height: 4px;
+      background: linear-gradient(90deg, #5b2cd3, #00c9ff);
+    }
+
+    /* === Page typography === */
+    h2 { 
+      color: #fdf4ff; 
+      margin-top: 0; 
+    }
+    
+    .page-title {
+      font-family: "Orbitron", system-ui, sans-serif;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin: 0 0 2rem;
+      font-size: 1.8rem;
+      background: linear-gradient(90deg, #ffb6ff, #7ec8ff);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      text-shadow: 0 0 14px rgba(170, 227, 255, 0.55);
+      text-align: center;
+    }
+
+    /* Subheaders for cards */
+    h3 {
+      font-family: "Orbitron", system-ui, sans-serif;
+      color: #90d8ff;
+      font-size: 1.25rem;
+      margin-top: 0;
+      margin-bottom: 1rem;
+      letter-spacing: 0.05em;
+    }
+
+    .highlight {
+      color: #ffffff;
+      text-shadow: 0 0 8px rgba(144, 216, 255, 0.4);
+      font-weight: 600;
+    }
+
+    /* === New Layout Classes === */
+    
+    .intro-text {
+      text-align: center;
+      max-width: 800px;
+      margin: 0 auto 2.5rem;
+      font-size: 1.1rem;
+      color: #e1e6ff;
+    }
+
+    /* Grid for Problem vs Solution */
+    .grid-container {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .card {
+      background: rgba(8, 10, 34, 0.6);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 1rem;
+      padding: 1.8rem;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+      backdrop-filter: blur(10px);
+      display: flex;
+      flex-direction: column;
+    }
+
+    .full-width-card {
+      grid-column: 1 / -1; /* Spans both columns */
+    }
+
+    p {
+      margin: 0 0 1rem;
+      font-size: 1rem;
+      color: #cfd7ff;
+    }
+
+    ul {
+      margin: 0;
+      padding-left: 1.2rem;
+      color: #cfd7ff;
+      font-size: 1rem;
+    }
+    
+    ul li { margin-bottom: 0.6rem; }
+    
+    /* Stronger bullet points */
+    ul li::marker {
+      color: #90d8ff;
+    }
+
+    @media (max-width: 800px) {
+      .nav-inner { flex-direction: column; align-items: flex-start; gap: 0.35rem; }
+      .nav-links { flex-wrap: wrap; gap: 0.75rem; }
+      
+      /* Collapse grid on mobile */
+      .grid-container { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <header class="brand-banner">
+    <div class="brand-inner">
+      <div class="brand-row">
+        <div class="brand-logo-wrap"></div>
+        <h1 class="brand-wordmark">Nebulous</h1>
+      </div>
+      <p class="brand-tagline">Where uncertainty becomes innovation.</p>
+    </div>
+  </header>
+
+  <nav class="top-nav">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-logo">
+        <div class="nav-logo-icon"></div>
+        <span class="nav-logo-text">Nebulous</span>
+      </a>
+
+      <div class="nav-links">
+<div class="dropdown">
+<a class="dropbtn" href="index.html" style="color:#ffffff;text-shadow:0 0 8px rgba(144,216,255,0.7);">About</a>
+<div class="dropdown-content">
+<a class="dropdown-project-link" href="mission-vision.html">
+<span class="dropdown-project-title">Mission and Vision</span>
+</a>
+<a class="dropdown-project-link" href="why-nebulous.html">
+<span class="dropdown-project-title">Why Nebulous?</span>
+</a>
+<a class="dropdown-project-link" href="who-nebulous-for.html">
+<span class="dropdown-project-title">Who is Nebulous for?</span>
+</a>
+</div>
+</div>
+<a href="impacts.html">Broader Impacts</a>
+<div class="dropdown">
+<button class="dropbtn">Research</button>
+<div class="dropdown-content research-menu">
+<a class="dropdown-project-link" href="research.html">
+<span class="dropdown-project-title">Research overview</span>
+<span class="dropdown-project-subtitle">Cross-cutting themes and active lines of work</span>
+</a>
+<a class="dropdown-project-link" href="eclipse.html">
+<span class="dropdown-project-title">ECLIPSE</span>
+<span class="dropdown-project-subtitle">Nebulous software framework</span>
+</a>
+<a class="dropdown-project-link" href="drift.html">
+<span class="dropdown-project-title">SOAR</span>
+<span class="dropdown-project-subtitle">Optimization of spacecraft designs</span>
+</a>
+<a class="dropdown-project-link" href="facet.html">
+<span class="dropdown-project-title">FACET</span>
+<span class="dropdown-project-subtitle">Design of optimized antennas</span>
+</a>
+<a class="dropdown-project-link" href="leo.html">
+<span class="dropdown-project-title">LEO</span>
+<span class="dropdown-project-subtitle">Design of optimized antenna arrays</span>
+</a>
+<a class="dropdown-project-link" href="origami.html">
+<span class="dropdown-project-title">ORIGAMI</span>
+<span class="dropdown-project-subtitle">Optimization of deployability</span>
+</a>
+</div>
+</div>
+<a href="publications.html">Publications</a>
+<a href="team.html">The Team</a>
+<a href="contact.html">Contact Us</a>
+</div>
+    </div>
+  </nav>
+
+  <div class="nav-accent"></div>
+
+  <main>
+    <section>
+      <h2 class="page-title">Why Nebulous?</h2>
+      
+      <div class="grid-container">
+        
+        <div class="card">
+          <h3>The Engineering Bottleneck</h3>
+          <p>
+            Many of the most interesting science and engineering problems sit in regimes where conventional design approaches are stretched to their limits: signals are rare, constraints are tightly coupled, and/or performance is shaped by complex physical environments or backgrounds.
+          </p>
+          <p>
+            In these settings, even expert-driven design cycles can only examine a small fraction of the possible solution space. Exhaustive parameter sweeps quickly become intractable, while conventional optimization methods can miss unconventional but buildable architectures that offer meaningful performance gains.
+          </p>
+        </div>
+
+        <div class="card">
+          <h3>The Nebulous Solution</h3>
+          <p>
+            Nebulous closes this gap by combining evolutionary optimization, AI-guided search, and physics-based simulation to:
+          </p>
+          <ul>
+            <li>Explore immense, highly constrained hardware design spaces.</li>
+            <li>Optimize across multiple scientific and engineering objectives at once.</li>
+            <li>Evaluate performance, robustness, and uncertainty under realistic operating conditions.</li>
+          </ul>
+          
+          <p style="margin-top: 1rem;">
+             This approach helps identify unconventional but buildable hardware designs that are difficult to find through conventional design workflows alone, opening access to new measurement regimes and enabling instruments, antennas, and spacecraft systems that must operate under strict constraints.
+          </p>
+        </div>
+
+        <div class="card full-width-card">
+          <h3>The Early-Design Regime</h3>
+          <p>
+            Much of AI focuses on analyzing data after systems are built. Nebulous focuses earlier, on the design choices that determine what instruments, antennas, and spacecraft systems can measure, how well they perform, and whether they can operate within real-world constraints.
+          </p>
+          <p style="margin-bottom: 0;">
+            Nebulous applies AI-guided, physics-based design methods before those choices are locked in, helping teams create buildable systems that measure, transmit, and perform better from the start.
+          </p>
+        </div>
+
+      </div>
+
+    </section>
+  </main>
+
+  <footer style="text-align:center;padding:1.25rem 1rem 1.5rem;font-size:0.85rem;color:#bbb;border-top:1px solid rgba(255,255,255,0.1);">
+    <p>&copy; 2026 Nebulous Project – Where uncertainty becomes innovation.</p>
+  </footer>
+</body>
+</html>

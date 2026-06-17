@@ -1,0 +1,599 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>About – Nebulous</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="style.css">
+
+  <!-- Retro-style display font -->
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&display=swap" rel="stylesheet">
+
+  <style>
+    /* === Spiral-galaxy overall palette === */
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.5;
+      color: #f4f4ff;
+      background:
+        radial-gradient(circle at 15% 0%, #ff7fd1 0, transparent 55%),
+        radial-gradient(circle at 80% 100%, #35c9ff 0, transparent 55%),
+        radial-gradient(circle at 10% 100%, #2e1a72 0, #050016 55%);
+      background-attachment: fixed;
+    }
+
+    .hero {
+      background: radial-gradient(circle at 20% 0%, #3a1f7a, transparent 55%),
+                  radial-gradient(circle at 80% 100%, #183b6b, transparent 60%),
+                  #050016;
+      color: #f4f4ff;
+      padding: 3.25rem 1.5rem 2.5rem;
+    }
+
+    main section {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 2.5rem 1.5rem;
+      background: rgba(6, 7, 26, 0.9);
+      border-radius: 1.1rem;
+      box-shadow: 0 18px 40px rgba(0, 0, 0, 0.45);
+      backdrop-filter: blur(10px);
+      margin-top: 1.5rem;
+      margin-bottom: 2rem;
+    }
+
+    a {
+      color: #90d8ff;
+    }
+
+    /* === Top nav with logo + dropdown === */
+    .top-nav {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      background: rgba(5, 5, 22, 0.96);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      backdrop-filter: blur(10px);
+    }
+
+    .nav-inner {
+      max-width: 1000px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.5rem 1.5rem;
+    }
+
+    .nav-logo {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      text-decoration: none;
+    }
+
+    .logo-img {
+      height: 32px;
+      width: 32px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+
+    .nav-logo-text {
+      font-family: "Orbitron", system-ui, sans-serif;
+      font-size: 1.05rem;
+      font-weight: 700;
+      background: linear-gradient(120deg, #ffb347, #ff6fd8, #9b5cff, #24c1ff);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      text-shadow: 0 0 10px rgba(255, 111, 216, 0.35);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: #d5ddff;
+      font-size: 0.9rem;
+      padding: 0.35rem 0.5rem;
+    }
+
+    .nav-links a:hover {
+      color: #ffffff;
+      text-shadow: 0 0 8px rgba(144, 216, 255, 0.7);
+    }
+
+    .dropdown {
+      position: relative;
+      display: inline-block;
+    }
+
+    .dropbtn {
+      border: none;
+      background: transparent;
+      font: inherit;
+      color: #d5ddff;
+      font-size: 0.9rem;
+      cursor: pointer;
+      padding: 0.35rem 0.5rem;
+    }
+
+    .dropbtn:hover {
+      color: #ffffff;
+      text-shadow: 0 0 8px rgba(144, 216, 255, 0.7);
+    }
+
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      right: 0;
+      background-color: #05001a;
+      min-width: 220px;
+      box-shadow: 0 12px 30px rgba(0,0,0,0.5);
+      border-radius: 0.6rem;
+      z-index: 30;
+      padding: 0.4rem 0;
+      border: 1px solid rgba(144, 216, 255, 0.35);
+    }
+
+    .dropdown-content a {
+      display: block;
+      padding: 0.45rem 0.9rem;
+      font-size: 0.9rem;
+      color: #e4e9ff;
+      text-decoration: none;
+      white-space: nowrap;
+    }
+
+    .dropdown-content a:hover {
+      background: radial-gradient(circle at 0 0, rgba(255, 111, 216, 0.3), transparent 60%);
+      color: #ffffff;
+    }
+
+    .dropdown:hover .dropdown-content {
+      display: block;
+    }
+
+    /* === Hero brand === */
+    .hero-inner {
+      max-width: 900px;
+      margin: 0 auto;
+      text-align: left;
+    }
+
+    .hero-brand {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 0.75rem;
+    }
+
+    .hero-logo {
+      height: 64px;
+      width: 64px;
+      border-radius: 50%;
+      box-shadow: 0 0 25px rgba(144, 216, 255, 0.65);
+      flex-shrink: 0;
+    }
+
+    .hero-title {
+      font-family: "Orbitron", system-ui, sans-serif;
+      font-size: 2.4rem;
+      margin: 0;
+      background: conic-gradient(from 180deg, #ffb347, #ff6fd8, #9b5cff, #24c1ff, #ffb347);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      text-shadow:
+        0 0 20px rgba(255, 111, 216, 0.65),
+        0 0 30px rgba(36, 193, 255, 0.55);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .hero-tagline {
+      margin: 0 0 0.75rem;
+      font-size: 1.1rem;
+      color: #ffe9ff;
+    }
+
+    .hero-sub {
+      max-width: 560px;
+      margin: 0 0 0.5rem;
+      font-size: 0.98rem;
+      color: #d6ddff;
+    }
+
+    h2, h3 {
+      color: #fdf4ff;
+      margin-top: 0;
+    }
+
+    .slogan {
+      font-style: italic;
+      color: #ffd9ff;
+      margin-top: 0.4rem;
+    }
+
+    .highlight {
+      color: #ff7fd1;
+      font-weight: 700;
+    }
+
+    ul {
+      padding-left: 1.1rem;
+    }
+
+    li + li {
+      margin-top: 0.35rem;
+    }
+
+    /* === Founder photo + text layout === */
+    .founder-layout {
+      display: flex;
+      gap: 1.5rem;
+      align-items: flex-start;
+      flex-wrap: wrap;
+      margin-top: 0.75rem;
+    }
+
+    .founder-photo {
+      width: 190px;
+      max-width: 40%;
+      border-radius: 1.1rem;
+      object-fit: cover;
+      box-shadow: 0 14px 30px rgba(0, 0, 0, 0.55),
+                  0 0 25px rgba(144, 216, 255, 0.65);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+    }
+
+    .founder-text {
+      flex: 1 1 240px;
+      min-width: 0;
+    }
+
+    @media (max-width: 700px) {
+      .nav-inner {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.3rem;
+      }
+
+      .nav-links {
+        flex-wrap: wrap;
+        gap: 0.3rem;
+      }
+
+      .hero-inner {
+        text-align: center;
+      }
+
+      .hero-brand {
+        justify-content: center;
+      }
+
+      .hero-sub {
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .founder-layout {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .founder-photo {
+        max-width: 70%;
+      }
+
+      .founder-text {
+        text-align: left;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- HERO -->
+  <header class="hero">
+    <div class="hero-inner">
+      <div class="hero-brand">
+        <img src="nebulous-logo.webp" alt="Nebulous logo" class="hero-logo">
+        <div>
+          <h1 class="hero-title">About Nebulous</h1>
+          <p class="hero-tagline">Where uncertainty becomes innovation.</p>
+        </div>
+      </div>
+      <p class="hero-sub">
+        Nebulous is a research collaboration focused on inventing and optimizing
+        new physical hardware architectures for science applications. The team
+        uses advanced AI tools to design optimized, buildable detector
+        technologies and scientific hardware — including spacecraft, antennas,
+        and emerging instrument concepts — that support demanding space- and
+        ground-based missions.
+      </p>
+    </div>
+  </header>
+
+  <!-- NAV -->
+  <nav class="top-nav">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-logo">
+        <img src="nebulous-logo.webp" alt="Nebulous logo" class="logo-img">
+        <span class="nav-logo-text">Nebulous</span>
+      </a>
+      <div class="nav-links">
+        <div class="dropdown">
+          <a class="dropbtn" href="index.html">About</a>
+          <div class="dropdown-content">
+            <a href="mission-vision.html">Mission and Vision</a>
+            <a href="why-nebulous.html">Why Nebulous?</a>
+            <a href="who-nebulous-for.html">Who is Nebulous for?</a>
+          </div>
+        </div>
+        <a href="impacts.html">Broader Impacts</a>
+        <a href="research.html">Research</a>
+        <a href="publications.html">Publications</a>
+        <a href="team.html">The Team</a>
+        <a href="contact.html">Contact Us</a>
+      </div>
+    </div>
+  </nav>
+
+  <main>
+    <!-- WHAT IS NEBULOUS -->
+    <section>
+      <h2>What Is Nebulous?</h2>
+      <p>
+        Nebulous is a research collaboration focused on inventing and optimizing
+        new physical hardware architectures for science applications. It uses
+        AI-driven design methods to create optimized, buildable detector
+        technologies and scientific hardware — including spacecraft, antennas,
+        and emerging instrument concepts — that must operate under tight mass,
+        volume, and performance constraints.
+      </p>
+      <p>
+        At the heart of Nebulous is a dedicated software framework called
+        <strong>ECLIPSE</strong> (Evolutionary Computation Library for
+        Instrument Prototyping in Scientific Engineering). ECLIPSE is an
+        evolutionary computation and physics-aware design library that searches
+        vast, unconventional hardware design spaces. It encodes candidate
+        designs as modular geometries, evaluates them with physics-based models,
+        and iteratively improves them to meet science and engineering
+        requirements.
+      </p>
+      <p>
+        Together, Nebulous and ECLIPSE blend computational creativity with
+        engineering, physics, and computer science. The collaboration focuses
+        on real, buildable hardware: designs must satisfy mission constraints,
+        manufacturability, and performance targets, not just look good in
+        simulation.
+      </p>
+    </section>
+
+    <!-- CURRENT FOCUS AREAS -->
+    <section>
+      <h2>Current Focus Areas</h2>
+      <p>
+        Nebulous currently applies the ECLIPSE framework to several concrete
+        engineering problems. Our work today is centered on three main areas:
+      </p>
+      <ul>
+        <li>
+          <strong>AI-designed antennas and antenna arrays.</strong>
+          Using ECLIPSE, we design antennas and interferometric arrays from
+          scratch with evolutionary algorithms and modular, “LEGO-like” building
+          blocks. The library explores many possible geometries and layouts,
+          converging on high-performing, buildable solutions that meet
+          mission-specific performance and footprint constraints.
+        </li>
+        <li>
+          <strong>Spacecraft geometries in LEO and VLEO.</strong>
+          ECLIPSE is used to optimize spacecraft shapes and configurations for
+          low Earth orbit (LEO), very low Earth orbit (VLEO), and
+          high-variability drag environments. The framework trades off drag,
+          power, pointing, and payload volume, helping mission teams understand
+          how geometry impacts performance and lifetime.
+        </li>
+        <li>
+          <strong>Early-stage deployability with origami-inspired folds.</strong>
+          Nebulous is in early R&amp;D on using ECLIPSE to study deployable
+          structures, applying origami-inspired folding patterns to improve how
+          large surfaces and instruments can compactly stow and reliably deploy
+          in space.
+        </li>
+      </ul>
+      <p>
+        These are the areas where Nebulous and ECLIPSE are actively in use
+        today. Additional applications — including other classes of detectors,
+        ground-based instruments, and advanced structures — are explicitly
+        treated as future directions under development, not as completed
+        capabilities.
+      </p>
+    </section>
+
+    <!-- FUTURE APPLICATIONS -->
+    <section>
+      <h2>Future Applications</h2>
+      <p>
+        Looking ahead, the same framework that designs antennas, arrays, and
+        spacecraft can be extended to a broader family of scientific hardware.
+        We are exploring concepts for applying ECLIPSE to new detector
+        technologies, ground-based instruments, and multi-physics structures
+        where geometry, materials, and deployment all interact.
+      </p>
+      <p>
+        These future applications are actively being studied and developed, but
+        they are intentionally described as <em>emerging directions</em> rather
+        than completed capabilities. As partnerships and science cases grow,
+        Nebulous and ECLIPSE will expand in step with real mission and
+        instrument needs.
+      </p>
+    </section>
+
+    <!-- WHY NEBULOUS -->
+    <section>
+      <h2>Why Nebulous?</h2>
+      <p>
+        Modern science missions and instruments must satisfy demanding
+        performance requirements under tight mass, volume, schedule, and budget
+        constraints. In traditional workflows, teams often cycle through many
+        rounds of manual design and redesign before they reach a configuration
+        that meets those requirements.
+      </p>
+      <p>
+        Nebulous was created to help science and engineering teams move more
+        quickly toward viable designs. By using ECLIPSE to explore large design
+        spaces computationally — and by embedding physics-based evaluation
+        directly into that exploration — the collaboration aims to surface
+        promising architectures earlier in the process. This can support
+        designs that meet key science and engineering requirements in earlier
+        generations of a project, reduce the need for repeated large-scale
+        redesigns, and help teams use their resources more effectively.
+      </p>
+      <p>
+        The goal is not to replace human designers, but to give them a powerful
+        partner that accelerates convergence to science-ready, buildable
+        solutions.
+      </p>
+    </section>
+
+    <!-- MISSION, VISION, BRAND ESSENCE -->
+    <section>
+      <h2>Mission, Vision &amp; Brand Essence</h2>
+      <h3>Mission</h3>
+      <p>
+        Nebulous develops AI-guided, physics-informed design tools that turn
+        vast, constrained design spaces into buildable, high-performance
+        hardware solutions for spacecraft, antennas, instruments, and advanced
+        engineering systems.
+      </p>
+
+      <h3>Vision</h3>
+      <p>
+        Nebulous envisions a future where the hardest engineering problems are
+        no longer limited by intuition alone, but expanded by intelligent
+        search—revealing new designs that accelerate discovery, strengthen space
+        exploration, and enable breakthrough technologies on Earth.
+      </p>
+
+      <p class="slogan">Slogan: <strong>Where uncertainty becomes innovation.</strong></p>
+
+      <h3>Brand Essence</h3>
+      <p>
+        The name “Nebulous” reflects the project’s commitment to exploration
+        and emergence: ideas and structures forming from apparent ambiguity.
+        The brand is grounded in four themes:
+      </p>
+      <ul>
+        <li>
+          <strong>Exploration &amp; Emergence:</strong> Structures and concepts
+          emerging from complexity, directly tied to the cosmic imagery of a
+          nebula.
+        </li>
+        <li>
+          <strong>Precision &amp; Engineering:</strong> Every design is rooted
+          in rigorous physics, optimization, and real-world buildability.
+        </li>
+        <li>
+          <strong>Scalability &amp; Adaptability:</strong> A flexible system
+          that can expand across different missions, domains, and generations
+          of technology.
+        </li>
+        <li>
+          <strong>Interdisciplinary Reach:</strong> A framework that resonates
+          with and serves NASA programs, defense partners, commercial industry,
+          and academic collaborators.
+        </li>
+      </ul>
+      <p>
+        In essence, Nebulous is about inventing the possible: designing the
+        instruments and spacecraft of the future through intelligent, evolutionary
+        exploration.
+      </p>
+    </section>
+
+    <!-- FOUNDER & COLLABORATION -->
+    <section>
+      <h2>Founder &amp; Collaboration</h2>
+
+      <div class="founder-layout">
+        <img
+          src="founder-julie.jpg"
+          alt="Dr. Julie Rolla"
+          class="founder-photo"
+        >
+
+        <div class="founder-text">
+          <p>
+            Nebulous was founded by Dr. Julie Rolla, a research scientist at
+            NASA’s Jet Propulsion Laboratory with a PhD in astroparticle
+            physics. She leads the Nebulous collaboration and the development
+            of ECLIPSE, focusing on AI-driven optimization of detector
+            technologies and scientific hardware. Her work spans astrophysics,
+            instrument design, and AI-driven optimization, as well as Earth
+            science and the application of remote sensing products for disaster
+            response.
+          </p>
+          <p>
+            The project brings together collaborators across NASA centers and
+            universities, including NASA Goddard Space Flight Center, Michigan
+            State University, The Ohio State University, the University of
+            Colorado Boulder, McMaster University, Autogenetics Research Lab,
+            and Remcom. This growing network of scientists, engineers,
+            technologists, and students helps ensure that Nebulous is shaped by
+            real science drivers and operational constraints.
+          </p>
+          <p>
+            By connecting evolutionary design, physics-based modeling, and mission
+            needs, Nebulous aims to become a trusted partner for teams tackling
+            their most challenging hardware design problems.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- WHO IT'S FOR -->
+    <section>
+      <h2>Who Nebulous Is For</h2>
+      <p>
+        Nebulous is designed for teams that need to explore <strong>ambitious
+        hardware concepts</strong> under <strong>real-world constraints</strong>.
+        It brings evolutionary design methods into early-stage hardware
+        development, helping teams search larger design spaces without losing
+        sight of requirements, risks, performance, and buildability.
+      </p>
+      <ul>
+        <li>
+          <strong>Space agencies and mission formulation teams</strong> seeking
+          better ways to explore trades between geometry, performance, and risk.
+        </li>
+        <li>
+          <strong>Commercial and defense partners</strong> developing compact,
+          high-performance antennas, spacecraft, or deployable structures.
+        </li>
+        <li>
+          <strong>Academic researchers and students</strong> interested in the
+          intersection of AI, physics, and hardware design.
+        </li>
+      </ul>
+      <p>
+        Whether you are defining a new mission concept, rethinking an existing
+        instrument, or exploring entirely new architectures, Nebulous can provide
+        a framework for <span class="highlight">turning uncertainty into innovation</span>.
+      </p>
+    </section>
+  </main>
+
+  <footer style="text-align:center;padding:1.25rem 1rem 1.5rem;font-size:0.85rem;color:#bbb;border-top:1px solid rgba(255,255,255,0.1);">
+    <p>&copy; 2026 Nebulous Project – Where uncertainty becomes innovation.</p>
+  </footer>
+</body>
+</html>

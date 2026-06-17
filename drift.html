@@ -1,0 +1,686 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<title>SOAR – Nebulous Project</title>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<link href="style.css" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&amp;family=Space+Grotesk:wght@400;500&amp;display=swap" rel="stylesheet"/>
+<style>
+    /* === Global background (galaxy) === */
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.5;
+      color: #f4f4ff;
+      background:
+        radial-gradient(circle at 15% 0%, #6933c7 0, transparent 55%),
+        radial-gradient(circle at 80% 100%, #00b7ff 0, transparent 55%),
+        radial-gradient(circle at 10% 100%, #24185c 0, #020317 55%);
+      background-attachment: fixed;
+    }
+
+    main section {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 2.5rem 1.5rem;
+      background: rgba(6, 7, 26, 0.9);
+      border-radius: 1.1rem;
+      box-shadow: 0 18px 40px rgba(0, 0, 0, 0.45);
+      backdrop-filter: blur(10px);
+      margin-top: 2rem;
+      margin-bottom: 2rem;
+    }
+
+    /* === Specific Styling for the Intro Section === */
+    #intro {
+      text-align: center;
+      padding-top: 3.5rem;
+      padding-bottom: 3.5rem;
+    }
+
+    #intro h2 {
+      font-size: 2rem;
+      margin-bottom: 1.8rem;
+      text-shadow: 0 0 15px rgba(144, 216, 255, 0.4);
+    }
+
+    #intro p {
+      font-size: 1.15rem;
+      line-height: 1.8;
+      color: #d8e1ff;
+      max-width: 800px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .intro-highlight {
+      color: #ff7fd1;
+      font-weight: 700;
+    }
+
+    a {
+      color: #90d8ff;
+      text-decoration: none;
+      transition: color 0.2s ease;
+    }
+    
+    a:hover {
+      color: #ffffff;
+      text-decoration: underline;
+    }
+
+    /* === Navigation bar === */
+    .top-nav {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      background: #050816;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.6);
+    }
+
+    .nav-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.6rem 1.5rem;
+    }
+
+    .nav-logo {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      text-decoration: none;
+    }
+
+    .nav-logo-icon {
+      height: 30px;
+      width: 30px;
+      border-radius: 50%;
+      background:
+        radial-gradient(circle at 30% 30%, #ffffff 0, rgba(255, 255, 255, 0.05) 35%, transparent 70%),
+        radial-gradient(circle, rgba(143, 113, 255, 0.9), rgba(143, 113, 255, 0.1) 65%, transparent 90%);
+      box-shadow: 0 0 12px rgba(143, 113, 255, 0.9);
+      flex-shrink: 0;
+    }
+
+    .nav-logo-text {
+      font-family: "Orbitron", system-ui, sans-serif;
+      font-size: 1rem;
+      font-weight: 700;
+      background: linear-gradient(120deg, #ffb347, #ff6fd8, #9b5cff, #24c1ff);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 1.4rem;
+    }
+
+    .nav-links a, .dropbtn {
+      text-decoration: none;
+      color: #e1e6ff;
+      font-size: 0.92rem;
+      padding: 0.3rem 0;
+      background: transparent;
+      border: none;
+      font: inherit;
+      cursor: pointer;
+    }
+
+    .nav-links a:hover, .dropbtn:hover {
+      color: #ffffff;
+      text-shadow: 0 0 8px rgba(144, 216, 255, 0.7);
+    }
+
+    .dropdown {
+      position: relative;
+      display: inline-block;
+    }
+
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      left: 0;
+      background-color: #05001a;
+      min-width: 220px;
+      box-shadow: 0 12px 30px rgba(0,0,0,0.5);
+      border-radius: 0.6rem;
+      z-index: 30;
+      padding: 0.4rem 0;
+      border: 1px solid rgba(144, 216, 255, 0.35);
+    }
+
+    .research-menu { min-width: 320px; }
+
+    .dropdown-content a {
+      display: block;
+      padding: 0.45rem 0.9rem;
+      font-size: 0.9rem;
+      color: #e4e9ff;
+      text-decoration: none;
+      white-space: nowrap;
+    }
+
+    .dropdown-content a:hover {
+      background: radial-gradient(circle at 0 0, rgba(255, 111, 216, 0.3), transparent 60%);
+      color: #ffffff;
+      text-decoration: none;
+    }
+
+    .dropdown:hover .dropdown-content {
+      display: block;
+    }
+
+    .dropdown-project-link { padding-top: 0.5rem; padding-bottom: 0.5rem; }
+    .dropdown-project-title { display: block; font-size: 0.9rem; font-weight: 500; }
+    .dropdown-project-subtitle { display: block; font-size: 0.78rem; opacity: 0.9; margin-top: 0.12rem; color: #b9c3ff; white-space: normal; }
+    
+    .nav-accent {
+      height: 4px;
+      background: linear-gradient(90deg, #5b2cd3, #00c9ff);
+    }
+
+    h2, h3 {
+      color: #fdf4ff;
+      margin-top: 0;
+    }
+    
+    h2 { font-family: "Orbitron", sans-serif; letter-spacing: 0.05em; margin-bottom: 1.5rem; }
+    h3 { font-family: "Space Grotesk", sans-serif; color: #90d8ff; margin-bottom: 1rem; border-bottom: 1px solid rgba(144, 216, 255, 0.2); padding-bottom: 0.5rem; }
+
+    /* === Team Grid Styles === */
+    .highlight {
+      color: #ff7fd1;
+      font-weight: 700;
+    }
+
+    .team-section {
+      margin-top: 2.5rem;
+    }
+
+    .people-grid {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 1.5rem;
+      margin-top: 1.5rem;
+    }
+
+    .person-card {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 0.8rem;
+      padding: 1.2rem;
+      text-align: center;
+      transition: transform 0.2s, box-shadow 0.2s;
+      
+      /* Flex properties to ensure nice sizing */
+      flex-basis: 200px;
+      flex-grow: 1;
+      max-width: 260px;
+    }
+
+    .person-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
+      border-color: rgba(144, 216, 255, 0.4);
+    }
+
+    .avatar {
+      width: 80px;
+      height: 80px;
+      background: linear-gradient(135deg, #3a2575, #5b2cd3);
+      border-radius: 50%;
+      margin: 0 auto 1rem;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+      border: 2px solid rgba(144, 216, 255, 0.3);
+      object-fit: cover;
+      display: block;
+    }
+
+    .person-name {
+      font-family: "Space Grotesk", sans-serif;
+      font-weight: 700;
+      font-size: 1.05rem;
+      margin: 0 0 0.4rem;
+      color: #ffffff;
+    }
+
+    .person-meta {
+      font-size: 0.85rem;
+      color: #b9c3ff;
+      line-height: 1.4;
+      margin: 0;
+    }
+
+    /* === Graphic/Image Containers === */
+    .graphic-container {
+      margin: 2rem 0;
+      text-align: center;
+    }
+
+    .graphic-container img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 0.8rem;
+      border: 1px solid rgba(144, 216, 255, 0.3);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    }
+    
+    /* === Results/Grid Section Styles === */
+    .grid {
+      display: grid;
+      gap: 1rem;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      margin-top: 1.2rem;
+    }
+
+    .card {
+      padding: 1.05rem 1.05rem;
+      border-radius: 0.95rem;
+      background: rgba(8, 10, 34, 0.75);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      box-shadow: 0 14px 28px rgba(0, 0, 0, 0.35);
+    }
+
+    .card h3 { font-size: 1.0rem; margin: 0 0 0.35rem; color: #90d8ff; }
+    .card p { margin: 0; color: #e7ecff; font-size: 0.95rem; }
+
+    .milestone-box {
+      background: linear-gradient(135deg, rgba(40, 20, 70, 0.6), rgba(20, 30, 60, 0.6));
+      border: 1px solid rgba(143, 113, 255, 0.3);
+      border-radius: 12px;
+      padding: 1.5rem;
+      margin: 1.5rem 0 2.5rem 0;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+      font-size: 1.05rem;
+      color: #f0f0f5;
+    }
+
+    .references-list {
+      padding-left: 1.2rem;
+      color: #e4e9ff;
+    }
+
+    .references-list li {
+      margin-bottom: 0.75rem;
+    }
+    
+    .references-list a {
+      font-weight: 700;
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+
+    .paper-links {
+      display: grid;
+      gap: 0.85rem;
+      margin-top: 1rem;
+      margin-bottom: 2rem;
+    }
+
+    .paper-link {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      text-decoration: none;
+      border-radius: 0.6rem;
+      padding: 1rem;
+      border: 1px solid rgba(144, 216, 255, 0.1);
+      background: rgba(10, 14, 40, 0.4);
+      color: #e7ecff;
+      transition: all 0.2s ease;
+    }
+
+    .paper-link:hover {
+      border-color: rgba(144, 216, 255, 0.4);
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+      transform: translateY(-1px);
+      text-decoration: none;
+      background: rgba(18, 22, 50, 0.7);
+    }
+
+    .paper-link[style*="cursor: default"]:hover {
+      transform: none;
+    }
+
+    .paper-icon-box {
+      flex-shrink: 0;
+      width: 38px;
+      height: 38px;
+      background: rgba(144, 216, 255, 0.08);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #90d8ff;
+      border: 1px solid rgba(144, 216, 255, 0.2);
+    }
+
+    .paper-icon-box svg {
+      width: 20px;
+      height: 20px;
+    }
+
+    .paper-content {
+      flex-grow: 1;
+    }
+
+    .paper-title {
+      display: block;
+      color: #ffffff;
+      font-weight: 600;
+      font-size: 0.95rem;
+      margin-bottom: 0.3rem;
+      font-family: "Space Grotesk", sans-serif;
+      line-height: 1.35;
+    }
+
+    .paper-meta {
+      display: flex;
+      gap: 0.6rem;
+      flex-wrap: wrap;
+      align-items: center;
+      color: #b9c3ff;
+      font-size: 0.8rem;
+    }
+
+    .meta-badge {
+      display: inline-block;
+      padding: 0.15rem 0.5rem;
+      border-radius: 4px;
+      font-size: 0.7rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .badge-drift {
+      background: rgba(216, 144, 255, 0.15);
+      border: 1px solid rgba(216, 144, 255, 0.3);
+      color: #f3ccff;
+    }
+
+    /* === Join banner at bottom === */
+    .join-banner {
+      background: radial-gradient(circle at 10% 0%, #5b2cd3 0, transparent 60%),
+                  radial-gradient(circle at 90% 100%, #00b7ff 0, transparent 60%),
+                  #050016;
+      padding: 2.75rem 1.5rem 3rem;
+      margin-top: 1rem;
+      box-shadow: 0 -14px 35px rgba(0, 0, 0, 0.6);
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .join-inner {
+      max-width: 920px;
+      margin: 0 auto;
+      text-align: left;
+    }
+
+    .join-banner h2 {
+      font-family: "Orbitron", system-ui, sans-serif;
+      font-size: 1.6rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-top: 0;
+      margin-bottom: 0.9rem;
+      background: linear-gradient(90deg, #ffb6ff, #7ec8ff);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      text-shadow: 0 0 16px rgba(170, 227, 255, 0.8);
+    }
+
+    .join-banner p {
+      margin: 0 0 0.9rem;
+      font-size: 0.96rem;
+      color: #e7ecff;
+    }
+
+    @media (max-width: 800px) {
+      .nav-inner { flex-direction: column; align-items: flex-start; gap: 0.35rem; }
+      .nav-links { flex-wrap: wrap; gap: 0.75rem; }
+      .grid { grid-template-columns: 1fr; }
+      .paper-link { padding: 0.9rem; gap: 0.8rem; }
+      .paper-icon-box { width: 34px; height: 34px; }
+      .paper-title { font-size: 0.9rem; }
+    }
+  </style>
+<style>
+
+        .status-box {
+          margin: 1.5rem 0 0;
+          padding: 1.15rem 1.2rem;
+          border-radius: 0.95rem;
+          background: linear-gradient(135deg, rgba(40, 20, 70, 0.55), rgba(20, 30, 60, 0.6));
+          border: 1px solid rgba(143, 113, 255, 0.28);
+          box-shadow: 0 10px 24px rgba(0,0,0,0.25);
+        }
+        .status-box p { margin: 0 0 0.55rem; color:#e7ecff; }
+        .status-box p:last-child { margin-bottom: 0; }
+        
+</style></head>
+<body>
+<header class="brand-banner">
+<div class="brand-inner">
+<div class="brand-row">
+<div class="brand-logo-wrap"></div>
+<h1 class="brand-wordmark">Nebulous</h1>
+</div>
+<p class="brand-tagline">Where uncertainty becomes innovation.</p>
+</div>
+</header>
+<nav class="top-nav">
+<div class="nav-inner">
+<a class="nav-logo" href="index.html">
+<div class="nav-logo-icon"></div>
+<span class="nav-logo-text">Nebulous</span>
+</a>
+<div class="nav-links">
+<div class="dropdown">
+<a class="dropbtn" href="index.html">About</a>
+<div class="dropdown-content">
+<a class="dropdown-project-link" href="mission-vision.html">
+<span class="dropdown-project-title">Mission and Vision</span>
+</a>
+<a class="dropdown-project-link" href="why-nebulous.html">
+<span class="dropdown-project-title">Why Nebulous?</span>
+</a>
+<a class="dropdown-project-link" href="who-nebulous-for.html">
+<span class="dropdown-project-title">Who is Nebulous for?</span>
+</a>
+</div>
+</div>
+<a href="impacts.html">Broader Impacts</a>
+<div class="dropdown">
+<button class="dropbtn" style="color:#ffffff;text-shadow:0 0 8px rgba(144,216,255,0.7);">Research</button>
+<div class="dropdown-content research-menu">
+<a class="dropdown-project-link" href="research.html">
+<span class="dropdown-project-title">Research overview</span>
+<span class="dropdown-project-subtitle">Cross-cutting themes and active lines of work</span>
+</a>
+<a class="dropdown-project-link" href="eclipse.html">
+<span class="dropdown-project-title">ECLIPSE</span>
+<span class="dropdown-project-subtitle">Nebulous software framework</span>
+</a>
+<a class="dropdown-project-link" href="drift.html">
+<span class="dropdown-project-title">SOAR</span>
+<span class="dropdown-project-subtitle">Optimization of spacecraft designs</span>
+</a>
+<a class="dropdown-project-link" href="facet.html">
+<span class="dropdown-project-title">FACET</span>
+<span class="dropdown-project-subtitle">Design of optimized antennas</span>
+</a>
+<a class="dropdown-project-link" href="leo.html">
+<span class="dropdown-project-title">LEO</span>
+<span class="dropdown-project-subtitle">Design of optimized antenna arrays</span>
+</a>
+<a class="dropdown-project-link" href="origami.html">
+<span class="dropdown-project-title">ORIGAMI</span>
+<span class="dropdown-project-subtitle">Optimization of deployability</span>
+</a>
+</div>
+</div>
+<a href="publications.html">Publications</a>
+<a href="team.html">The Team</a>
+<a href="contact.html">Contact Us</a>
+</div>
+</div>
+</nav>
+<div class="nav-accent"></div>
+<main>
+<section id="intro">
+<h2>SOAR: Spacecraft Optimization of Aerodynamic Resistance</h2>
+<p>
+        SOAR is exploring the evolutionary, multi-objective optimization and design of spacecraft geometries for high-drag, high-variability orbital environments. This includes operations in <span class="intro-highlight">Very Low Earth Orbit (VLEO)</span> and during <span class="intro-highlight">space weather</span> conditions where aerodynamic drag and atmospheric variability can dominate mission lifetime and operational risk.
+      </p>
+<div class="graphic-container">
+<img alt="SOAR spacecraft optimization concept" src="images/drift.jpg"/>
+</div>
+</section>
+<section id="goals">
+<h2>Goal &amp; Motivation</h2>
+<p>
+        Operating in VLEO can enable higher-resolution Earth observations and lower-latency communications, but it also places spacecraft in an environment where aerodynamic drag and density variability can quickly erode altitude, tighten operations margins, and shorten mission lifetime. Space weather can amplify this risk: energy deposited into the upper atmosphere during geomagnetic activity can heat and expand the thermosphere, increasing neutral density at satellite altitudes and therefore increasing drag and orbital decay.
+      </p>
+<p>
+        Public-case analyses of February 2022 satellite losses highlight how modest geomagnetic storms and off-nominal density conditions can translate into severe operational consequences for low-altitude assets, underscoring the need for improved, mission-aware approaches to drag-resilient spacecraft design [1, 2].
+      </p>
+<div class="grid">
+<div class="card">
+<h3>Primary objective</h3>
+<p>
+            Optimize spacecraft designs for <span class="highlight">high-drag environments</span> to improve survivability and efficiency in VLEO and during severe space weather.
+          </p>
+</div>
+<div class="card">
+<h3>What SOAR is building toward</h3>
+<p>
+            A workflow for producing <span class="highlight">requirement-driven</span> candidate geometries and actionable trade studies for mission teams as the capability matures.
+          </p>
+</div>
+</div>
+</section><section id="results">
+<h2>Results &amp; Updates</h2>
+<p>
+        SOAR Phase 1 results are available in NASA JPL’s Interplanetary Network (IPN) Progress Report.
+      </p>
+<div class="paper-links" aria-label="SOAR papers">
+<div class="paper-link" role="article">
+<div class="paper-icon-box" style="color: #d890ff; border-color: rgba(216, 144, 255, 0.4); background: rgba(216, 144, 255, 0.1);">
+<svg fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" x2="8" y1="13" y2="13"></line><line x1="16" x2="8" y1="17" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+</div>
+<div class="paper-content">
+<a class="paper-title" href="https://ipnpr.jpl.nasa.gov/progress_report/42-244/42-244B.html" rel="noopener" target="_blank">A Methodology for Evolving Aerodynamically Optimal Spacecraft in the Free Molecular Flow Conditions of Very Low Earth Orbits</a>
+<div class="paper-meta">
+<span class="meta-badge badge-drift">SOAR</span>
+<span>IPN Progress Report 42-244B</span>
+</div>
+</div>
+</div>
+<div class="paper-link" role="article" style="cursor: default; opacity: 0.85;">
+<div class="paper-icon-box" style="color: #d890ff; border-color: rgba(216, 144, 255, 0.4); background: rgba(216, 144, 255, 0.1);">
+<svg fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" x2="8" y1="13" y2="13"></line><line x1="16" x2="8" y1="17" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+</div>
+<div class="paper-content">
+<span class="paper-title">Genetic Programming Theory and Practice XXIII workshop paper</span>
+<div class="paper-meta">
+<span class="meta-badge badge-drift">SOAR</span>
+<span>Upcoming paper</span>
+</div>
+</div>
+</div>
+</div>
+<h3>Key references</h3>
+<ol class="references-list">
+<li>
+          Space Weather paper on February 2022 satellite losses and operational risk in LEO/VLEO. <a href="https://doi.org/10.1029/2022SW003330" rel="noopener noreferrer" target="_blank">doi:10.1029/2022SW003330</a>
+</li>
+<li>
+          Space Weather paper on geomagnetic activity, thermospheric density variability, and drag impacts for low-altitude assets. <a href="https://doi.org/10.1029/2023SW003716" rel="noopener noreferrer" target="_blank">doi:10.1029/2023SW003716</a>
+</li>
+</ol>
+</section><section id="who">
+<h2>Who are we?</h2>
+<p style="margin:0;">
+</p>
+<div aria-label="Collaborators" class="team-section">
+<h3>Main Contributors/Developers</h3>
+<div class="people-grid">
+<div class="person-card">
+<img alt="Dr. Julie Rolla" class="avatar" src="images/julie.jpg"/>
+<p class="person-name">Dr. Julie Rolla</p>
+<p class="person-meta"><em>Principal Investigator (PI)</em><br/>NASA Jet Propulsion Laboratory</p>
+</div>
+<div class="person-card">
+<img alt="Dr. Marcin Pilinski" class="avatar" src="images/marcin.jpg"/>
+<p class="person-name">Dr. Marcin Pilinski</p>
+<p class="person-meta">Aerospace Engineering Research Associate<br/>CU Boulder (LASP)</p>
+</div>
+<div class="person-card">
+<img alt="Anselmo Pontes" class="avatar" src="images/anselmo.jpg"/>
+<p class="person-name">Dr. Anselmo Pontes</p>
+<p class="person-meta">Principal Scientist<br/>Autogenetics Research Lab</p>
+</div>
+<div class="person-card">
+<img alt="Dr. Emily Dolson" class="avatar" src="images/emily.jpg"/>
+<p class="person-name">Dr. Emily Dolson</p>
+<p class="person-meta">Professor, Computer Science &amp; Engineering<br/>Michigan State University</p>
+</div>
+<div class="person-card">
+<img alt="Dr. Kyle Helson" class="avatar" src="images/kyle.jpg"/>
+<p class="person-name">Dr. Kyle Helson</p>
+<p class="person-meta">Astrophysicist<br/>UMBC / NASA GSFC</p>
+</div>
+<div class="person-card">
+<img alt="Dr. Olga Verkhoglyadova" class="avatar" src="images/olga.jpg"/>
+<p class="person-name">Dr. Olga Verkhoglyadova</p>
+<p class="person-meta">Space Weather / Aeronomy<br/>NASA Jet Propulsion Laboratory</p>
+</div>
+</div>
+</div>
+<div aria-label="Students" class="team-section">
+<h3>Students</h3>
+<div class="people-grid">
+<div class="person-card">
+<img alt="Rick Marcusen" class="avatar" src="images/rick.jpg"/>
+<p class="person-name">Rick Marcusen</p>
+<p class="person-meta">PhD Candidate<br/>CU Boulder</p>
+</div>
+<div class="person-card">
+<img alt="Max Foreback" class="avatar" src="images/max.jpg"/>
+<p class="person-name">Max Foreback</p>
+<p class="person-meta">PhD Candidate<br/>Michigan State University</p>
+</div>
+<div class="person-card">
+<img alt="Evan Imata" class="avatar" src="images/evan.JPG"/>
+<p class="person-name">Evan Imata</p>
+<p class="person-meta">Postbacc<br/>UC Berkeley</p>
+</div>
+<div class="person-card">
+<div aria-label="Portrait placeholder" class="avatar"></div>
+<p class="person-name">Jonathan Sy</p>
+<p class="person-meta">Postbacc<br/>UC Berkeley</p>
+</div>
+</div>
+</div>
+</section>
+
+
+</main>
+<footer style="text-align:center;padding:1.25rem 1rem 1.5rem;font-size:0.85rem;color:#bbb;border-top:1px solid rgba(255,255,255,0.1);">
+<p>© 2026 Nebulous Project – Where uncertainty becomes innovation.</p>
+</footer>
+</body>
+</html>

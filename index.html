@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<title>Nebulous – Where Uncertainty Becomes Innovation</title>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<link href="style.css" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&amp;family=Space+Grotesk:wght@400;500&amp;display=swap" rel="stylesheet"/>
+<style>
+    /* === Global background (galaxy) === */
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.5;
+      color: #f4f4ff;
+      background:
+        radial-gradient(circle at 15% 0%, #6933c7 0, transparent 55%),
+        radial-gradient(circle at 80% 100%, #00b7ff 0, transparent 55%),
+        radial-gradient(circle at 10% 100%, #24185c 0, #020317 55%);
+      background-attachment: fixed;
+    }
+
+    main section {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 2.5rem 1.5rem;
+      background: rgba(6, 7, 26, 0.9);
+      border-radius: 1.1rem;
+      box-shadow: 0 18px 40px rgba(0, 0, 0, 0.45);
+      backdrop-filter: blur(10px);
+      margin-top: 2rem;
+      margin-bottom: 2rem;
+    }
+
+    a {
+      color: #90d8ff;
+    }
+
+    /* === Navigation bar under banner === */
+    .top-nav {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      background: #050816;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.6);
+    }
+
+    .nav-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.6rem 1.5rem;
+    }
+
+    .nav-logo {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      text-decoration: none;
+    }
+
+    /* Small glowing circle in nav, no image inside */
+    .nav-logo-icon {
+      height: 30px;
+      width: 30px;
+      border-radius: 50%;
+      background:
+        radial-gradient(circle at 30% 30%, #ffffff 0, rgba(255, 255, 255, 0.05) 35%, transparent 70%),
+        radial-gradient(circle, rgba(143, 113, 255, 0.9), rgba(143, 113, 255, 0.1) 65%, transparent 90%);
+      box-shadow: 0 0 12px rgba(143, 113, 255, 0.9);
+      flex-shrink: 0;
+    }
+
+    .nav-logo-text {
+      font-family: "Orbitron", system-ui, sans-serif;
+      font-size: 1rem;
+      font-weight: 700;
+      background: linear-gradient(120deg, #ffb347, #ff6fd8, #9b5cff, #24c1ff);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 1.4rem;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: #e1e6ff;
+      font-size: 0.92rem;
+      padding: 0.3rem 0;
+    }
+
+    .nav-links a:hover {
+      color: #ffffff;
+      text-shadow: 0 0 8px rgba(144, 216, 255, 0.7);
+    }
+
+    .dropdown {
+      position: relative;
+      display: inline-block;
+    }
+
+    .dropbtn {
+      border: none;
+      background: transparent;
+      font: inherit;
+      color: #e1e6ff;
+      font-size: 0.92rem;
+      cursor: pointer;
+      padding: 0.3rem 0;
+    }
+
+    .dropbtn:hover {
+      color: #ffffff;
+      text-shadow: 0 0 8px rgba(144, 216, 255, 0.7);
+    }
+
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      left: 0;
+      background-color: #05001a;
+      min-width: 220px;
+      box-shadow: 0 12px 30px rgba(0,0,0,0.5);
+      border-radius: 0.6rem;
+      z-index: 30;
+      padding: 0.4rem 0;
+      border: 1px solid rgba(144, 216, 255, 0.35);
+    }
+
+    .research-menu {
+      min-width: 320px;
+    }
+
+    .dropdown-content a {
+      display: block;
+      padding: 0.45rem 0.9rem;
+      font-size: 0.9rem;
+      color: #e4e9ff;
+      text-decoration: none;
+      white-space: nowrap;
+    }
+
+    .dropdown-content a:hover {
+      background: radial-gradient(circle at 0 0, rgba(255, 111, 216, 0.3), transparent 60%);
+      color: #ffffff;
+    }
+
+    .dropdown:hover .dropdown-content {
+      display: block;
+    }
+
+    /* Project entries with title + subtitle */
+    .dropdown-project-link {
+      padding-top: 0.5rem;
+      padding-bottom: 0.5rem;
+    }
+
+    .dropdown-project-title {
+      display: block;
+      font-size: 0.9rem;
+      font-weight: 500;
+    }
+
+    .dropdown-project-subtitle {
+      display: block;
+      font-size: 0.78rem;
+      opacity: 0.9;
+      margin-top: 0.12rem;
+      color: #b9c3ff;
+      white-space: normal;
+    }
+    
+    .nav-accent {
+      height: 4px;
+      background: linear-gradient(90deg, #5b2cd3, #00c9ff);
+    }
+
+    /* === Buttons reused in main content === */
+    .hero-actions {
+      margin-top: 1.5rem;
+    }
+
+    .btn,
+    .btn-outline {
+      display: inline-block;
+      padding: 0.75rem 1.6rem;
+      text-decoration: none;
+      border-radius: 999px;
+      font-weight: 500;
+      font-size: 0.95rem;
+    }
+
+    .btn {
+      background: linear-gradient(135deg, #ff6fd8, #24c1ff);
+      color: #050016;
+      box-shadow: 0 0 18px rgba(144, 216, 255, 0.7);
+    }
+
+    .btn:hover {
+      opacity: 0.9;
+    }
+
+    .btn-outline {
+      border: 1px solid #90d8ff;
+      color: #e4f5ff;
+      background: transparent;
+    }
+
+    .btn-outline:hover {
+      background: rgba(144, 216, 255, 0.08);
+    }
+
+    h2 {
+      color: #90d8ff; /* CHANGED: Major points now use the light blue accent color */
+      margin-top: 0;
+      font-family: "Orbitron", system-ui, sans-serif; /* Optional: Makes headers match brand font */
+      letter-spacing: 0.05em; /* Optional: Adds a bit of breathing room */
+    }
+    
+    h3 {
+      color: #fdf4ff;
+      margin-top: 0;
+    }
+
+    /* === Join banner at bottom === */
+    .join-banner {
+      background: radial-gradient(circle at 10% 0%, #5b2cd3 0, transparent 60%),
+                  radial-gradient(circle at 90% 100%, #00b7ff 0, transparent 60%),
+                  #050016;
+      padding: 2.75rem 1.5rem 3rem;
+      margin-top: 1rem;
+      box-shadow: 0 -14px 35px rgba(0, 0, 0, 0.6);
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .join-inner {
+      max-width: 920px;
+      margin: 0 auto;
+      text-align: left;
+    }
+
+    .join-banner h2 {
+      font-family: "Orbitron", system-ui, sans-serif;
+      font-size: 1.6rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-top: 0;
+      margin-bottom: 0.9rem;
+      background: linear-gradient(90deg, #ffb6ff, #7ec8ff);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      text-shadow: 0 0 16px rgba(170, 227, 255, 0.8);
+    }
+
+    .join-banner p {
+      margin: 0 0 0.9rem;
+      font-size: 0.96rem;
+      color: #e7ecff;
+    }
+
+    @media (max-width: 800px) {
+      .nav-inner {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.35rem;
+      }
+
+      .nav-links {
+        flex-wrap: wrap;
+        gap: 0.75rem;
+      }
+    }
+  </style>
+<style>
+
+    .proof-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1rem;
+      margin-top: 1.2rem;
+    }
+    .proof-card {
+      padding: 1.05rem;
+      border-radius: 0.95rem;
+      background: rgba(8, 10, 34, 0.75);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      box-shadow: 0 14px 28px rgba(0, 0, 0, 0.35);
+    }
+    .proof-card h3 { color: #90d8ff; font-size: 1rem; margin-bottom: 0.35rem; }
+    .proof-card p { margin: 0; color: #e7ecff; font-size: 0.95rem; }
+    .cta-caption {
+      margin-top: 1.1rem;
+      margin-bottom: 0.85rem;
+      color: #d8e1ff;
+    }
+    .action-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.8rem;
+      margin-top: 0.4rem;
+    }
+    
+</style></head>
+<body>
+<header class="brand-banner">
+<div class="brand-inner">
+<div class="brand-row">
+<div class="brand-logo-wrap"></div>
+<h1 class="brand-wordmark">Nebulous</h1>
+</div>
+<p class="brand-tagline">Where uncertainty becomes innovation.</p>
+</div>
+</header>
+<nav class="top-nav">
+<div class="nav-inner">
+<a class="nav-logo" href="index.html">
+<div class="nav-logo-icon"></div>
+<span class="nav-logo-text">Nebulous</span>
+</a>
+<div class="nav-links">
+<div class="dropdown">
+<a class="dropbtn" href="index.html">About</a>
+<div class="dropdown-content">
+<a class="dropdown-project-link" href="mission-vision.html">
+<span class="dropdown-project-title">Mission and Vision</span>
+</a>
+<a class="dropdown-project-link" href="why-nebulous.html">
+<span class="dropdown-project-title">Why Nebulous?</span>
+</a>
+<a class="dropdown-project-link" href="who-nebulous-for.html">
+<span class="dropdown-project-title">Who is Nebulous for?</span>
+</a>
+</div>
+</div>
+<a href="impacts.html">Broader Impacts</a>
+<div class="dropdown">
+<button class="dropbtn">Research</button>
+<div class="dropdown-content research-menu">
+<a class="dropdown-project-link" href="research.html">
+<span class="dropdown-project-title">Research overview</span>
+<span class="dropdown-project-subtitle">Cross-cutting themes and active lines of work</span>
+</a>
+<a class="dropdown-project-link" href="eclipse.html">
+<span class="dropdown-project-title">ECLIPSE</span>
+<span class="dropdown-project-subtitle">Nebulous software framework</span>
+</a>
+<a class="dropdown-project-link" href="drift.html">
+<span class="dropdown-project-title">SOAR</span>
+<span class="dropdown-project-subtitle">Optimization of spacecraft designs</span>
+</a>
+<a class="dropdown-project-link" href="facet.html">
+<span class="dropdown-project-title">FACET</span>
+<span class="dropdown-project-subtitle">Design of optimized antennas</span>
+</a>
+<a class="dropdown-project-link" href="leo.html">
+<span class="dropdown-project-title">LEO</span>
+<span class="dropdown-project-subtitle">Design of optimized antenna arrays</span>
+</a>
+<a class="dropdown-project-link" href="origami.html">
+<span class="dropdown-project-title">ORIGAMI</span>
+<span class="dropdown-project-subtitle">Optimization of deployability</span>
+</a>
+</div>
+</div>
+<a href="publications.html">Publications</a>
+<a href="team.html">The Team</a>
+<a href="contact.html">Contact Us</a>
+</div>
+</div>
+</nav>
+<div class="nav-accent"></div>
+<main>
+<section>
+<h2>AI-driven evolution of hardware</h2>
+<p>
+        Nebulous is a research collaboration focused on using evolutionary
+        algorithms and AI to design next-generation science
+        hardware. By treating instrument concepts as evolving candidates,
+        we rapidly explore large design spaces and converge on solutions that
+        are high-performing, feasible to build, and mission-relevant. 
+      </p>
+</section>
+<section>
+<h2>Search, simulation, and trade studies</h2>
+<p>
+        Pure optimization can fail when objectives are incomplete, constraints
+        are complex, or the operating environment is difficult to model.
+        Nebulous combines evolutionary algorithms, AI, and multi-objective
+        optimization with science-grade Monte Carlo and digital-twin
+        simulations, producing more robust solutions and design trade studies
+        that engineers can act on.
+      </p>
+</section>
+<section>
+<h2>From requirements to buildable concepts</h2>
+<p>
+        Nebulous starts with requirements, constraints, and performance goals,
+        then generates and evaluates candidate hardware designs through
+        physics-based simulation. The result is more than an optimized geometry:
+        it is a traceable trade study that helps teams understand performance,
+        risk, and buildability before moving toward fabrication and testing.
+      </p>
+<div class="hero-actions">
+<a class="btn" href="research.html">Explore Our Projects</a>
+<a class="btn-outline" href="contact.html">Contact Us</a>
+</div>
+</section>
+</main>
+<footer style="text-align:center;padding:1.25rem 1rem 1.5rem;font-size:0.85rem;color:#bbb;border-top:1px solid rgba(255,255,255,0.1);">
+<p>© 2026 Nebulous Project – Where uncertainty becomes innovation.</p>
+</footer>
+</body>
+</html>

@@ -1,0 +1,590 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<title>LEO – Nebulous</title>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<link href="style.css" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&amp;family=Space+Grotesk:wght@400;500&amp;display=swap" rel="stylesheet"/>
+<style>
+    /* === Global background (galaxy) === */
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.5;
+      color: #f4f4ff;
+      background:
+        radial-gradient(circle at 15% 0%, #6933c7 0, transparent 55%),
+        radial-gradient(circle at 80% 100%, #00b7ff 0, transparent 55%),
+        radial-gradient(circle at 10% 100%, #24185c 0, #020317 55%);
+      background-attachment: fixed;
+    }
+
+    main section {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 2.5rem 1.5rem;
+      background: rgba(6, 7, 26, 0.9);
+      border-radius: 1.1rem;
+      box-shadow: 0 18px 40px rgba(0, 0, 0, 0.45);
+      backdrop-filter: blur(10px);
+      margin-top: 2rem;
+      margin-bottom: 2rem;
+    }
+
+    /* === Specific Styling for the Intro Section (Matches FACET) === */
+    #intro {
+      text-align: center;
+      padding-top: 3.5rem;
+      padding-bottom: 3.5rem;
+    }
+
+    #intro h2 {
+      font-size: 2rem;
+      margin-bottom: 1.8rem;
+      text-shadow: 0 0 15px rgba(144, 216, 255, 0.4);
+    }
+
+    #intro p.intro-text {
+      font-size: 1.15rem;
+      line-height: 1.8;
+      color: #d8e1ff;
+      max-width: 800px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .intro-highlight {
+      color: #ff7fd1;
+      font-weight: 700;
+    }
+
+    /* --- GRAPHIC STYLES  --- */
+    .graphic-container {
+      width: 100%;
+      margin: 2.5rem 0 1rem 0;
+      border-radius: 0.8rem;
+      overflow: hidden;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+      border: 1px solid rgba(144, 216, 255, 0.2);
+    }
+
+    .graphic-container img {
+        width: 100%;
+        height: auto;
+        display: block;
+    }
+
+    .graphic-caption {
+        margin-top: 1rem;
+        font-style: italic;
+        color: #b9c3ff;
+        text-align: center;
+        font-size: 0.95rem;
+    }
+
+    a {
+      color: #90d8ff;
+      text-decoration: none;
+      transition: color 0.2s ease;
+    }
+    
+    a:hover {
+      color: #ffffff;
+      text-decoration: underline;
+    }
+
+    /* === Navigation bar under banner === */
+    .top-nav {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      background: #050816;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.6);
+    }
+
+    .nav-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.6rem 1.5rem;
+    }
+
+    .nav-logo {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      text-decoration: none;
+    }
+
+    .nav-logo-icon {
+      height: 30px;
+      width: 30px;
+      border-radius: 50%;
+      background:
+        radial-gradient(circle at 30% 30%, #ffffff 0, rgba(255, 255, 255, 0.05) 35%, transparent 70%),
+        radial-gradient(circle, rgba(143, 113, 255, 0.9), rgba(143, 113, 255, 0.1) 65%, transparent 90%);
+      box-shadow: 0 0 12px rgba(143, 113, 255, 0.9);
+      flex-shrink: 0;
+    }
+
+    .nav-logo-text {
+      font-family: "Orbitron", system-ui, sans-serif;
+      font-size: 1rem;
+      font-weight: 700;
+      background: linear-gradient(120deg, #ffb347, #ff6fd8, #9b5cff, #24c1ff);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 1.4rem;
+    }
+
+    .nav-links a, .dropbtn {
+      text-decoration: none;
+      color: #e1e6ff;
+      font-size: 0.92rem;
+      padding: 0.3rem 0;
+      background: transparent;
+      border: none;
+      font: inherit;
+      cursor: pointer;
+    }
+
+    .nav-links a:hover, .dropbtn:hover {
+      color: #ffffff;
+      text-shadow: 0 0 8px rgba(144, 216, 255, 0.7);
+    }
+
+    .dropdown { position: relative; display: inline-block; }
+
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      left: 0;
+      background-color: #05001a;
+      min-width: 220px;
+      box-shadow: 0 12px 30px rgba(0,0,0,0.5);
+      border-radius: 0.6rem;
+      z-index: 30;
+      padding: 0.4rem 0;
+      border: 1px solid rgba(144, 216, 255, 0.35);
+    }
+
+    .research-menu { min-width: 320px; }
+
+    .dropdown-content a {
+      display: block;
+      padding: 0.45rem 0.9rem;
+      font-size: 0.9rem;
+      color: #e4e9ff;
+      text-decoration: none;
+      white-space: nowrap;
+    }
+
+    .dropdown-content a:hover {
+      background: radial-gradient(circle at 0 0, rgba(255, 111, 216, 0.3), transparent 60%);
+      color: #ffffff;
+      text-decoration: none;
+    }
+
+    .dropdown:hover .dropdown-content { display: block; }
+
+    .dropdown-project-link { padding-top: 0.5rem; padding-bottom: 0.5rem; }
+
+    .dropdown-project-title {
+      display: block;
+      font-size: 0.9rem;
+      font-weight: 500;
+    }
+
+    .dropdown-project-subtitle {
+      display: block;
+      font-size: 0.78rem;
+      opacity: 0.9;
+      margin-top: 0.12rem;
+      color: #b9c3ff;
+      white-space: normal;
+    }
+
+    .nav-accent {
+      height: 4px;
+      background: linear-gradient(90deg, #5b2cd3, #00c9ff);
+    }
+
+    /* === Page typography === */
+    h2, h3 { color: #fdf4ff; margin-top: 0; }
+    
+    h2 { font-family: "Orbitron", sans-serif; letter-spacing: 0.05em; margin-bottom: 1.5rem; }
+    h3 { font-family: "Space Grotesk", sans-serif; color: #90d8ff; margin-bottom: 1rem; border-bottom: 1px solid rgba(144, 216, 255, 0.2); padding-bottom: 0.5rem; }
+
+
+    .highlight {
+      /* color: #ffffff;
+      text-shadow: 0 0 10px rgba(144, 216, 255, 0.55); */
+      color: #ff7fd1;
+      font-weight: 700;
+    }
+
+    .grid {
+      display: grid;
+      gap: 1rem;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      margin-top: 1.2rem;
+    }
+
+    .card {
+      padding: 1.05rem 1.05rem;
+      border-radius: 0.95rem;
+      background: rgba(8, 10, 34, 0.75);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      box-shadow: 0 14px 28px rgba(0, 0, 0, 0.35);
+    }
+
+    .card h3 { font-size: 1.0rem; margin: 0 0 0.35rem; border: none; padding: 0; color: #fff;}
+    .card p { margin: 0; color: #e7ecff; font-size: 0.95rem; }
+
+    .list {
+      margin: 0.7rem 0 0;
+      padding-left: 1.1rem;
+      color: #e7ecff;
+    }
+
+    .list li { margin: 0.4rem 0; }
+
+    /* === Team Grid Styles (Symmetric Flex) === */
+    .team-section {
+      margin-top: 2.5rem;
+    }
+
+    /* Used Flexbox with center alignment for symmetry on uneven rows */
+    .people-grid {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 1.5rem;
+      margin-top: 1.5rem;
+    }
+
+    .person-card {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 0.8rem;
+      padding: 1.2rem;
+      text-align: center;
+      transition: transform 0.2s, box-shadow 0.2s;
+      
+      /* Flex properties to ensure nice sizing */
+      flex-basis: 200px;
+      flex-grow: 1;
+      max-width: 260px;
+    }
+
+    .person-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
+      border-color: rgba(144, 216, 255, 0.4);
+    }
+
+    /* Updated Avatar style to handle images */
+    .avatar {
+      width: 80px;
+      height: 80px;
+      background: linear-gradient(135deg, #3a2575, #5b2cd3);
+      border-radius: 50%;
+      margin: 0 auto 1rem;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+      border: 2px solid rgba(144, 216, 255, 0.3);
+      object-fit: cover; /* Ensures image fills circle without distorting */
+      display: block;
+    }
+
+    .person-name {
+      font-family: "Space Grotesk", sans-serif;
+      font-weight: 700;
+      font-size: 1.05rem;
+      margin: 0 0 0.4rem;
+      color: #ffffff;
+    }
+
+    .person-meta {
+      font-size: 0.85rem;
+      color: #b9c3ff;
+      line-height: 1.4;
+      margin: 0;
+    }
+    .person-meta em { font-style: normal; color: #e7ecff; opacity: 0.95; }
+
+
+    /* === Join banner at bottom === */
+    .join-banner {
+      background:
+        radial-gradient(circle at 10% 0%, #5b2cd3 0, transparent 60%),
+        radial-gradient(circle at 90% 100%, #00b7ff 0, transparent 60%),
+        #050016;
+      padding: 2.75rem 1.5rem 3rem;
+      margin-top: 1rem;
+      box-shadow: 0 -14px 35px rgba(0, 0, 0, 0.6);
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .join-inner {
+      max-width: 920px;
+      margin: 0 auto;
+      text-align: left;
+    }
+
+    .join-banner h2 {
+      font-family: "Orbitron", system-ui, sans-serif;
+      font-size: 1.6rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-top: 0;
+      margin-bottom: 0.9rem;
+      background: linear-gradient(90deg, #ffb6ff, #7ec8ff);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      text-shadow: 0 0 16px rgba(170, 227, 255, 0.8);
+    }
+
+    .join-banner p { margin: 0 0 0.9rem; font-size: 0.96rem; color: #e7ecff; }
+
+    .milestone-box {
+      background: linear-gradient(135deg, rgba(40, 20, 70, 0.6), rgba(20, 30, 60, 0.6));
+      border: 1px solid rgba(143, 113, 255, 0.3);
+      border-radius: 12px;
+      padding: 1.5rem;
+      margin: 1.5rem 0 2.5rem 0;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+      font-size: 1.05rem;
+      color: #f0f0f5;
+    }
+
+    @media (max-width: 900px) {
+      .grid { grid-template-columns: 1fr; }
+    }
+
+    @media (max-width: 800px) {
+      .nav-inner {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.35rem;
+      }
+
+      .nav-links {
+        flex-wrap: wrap;
+        gap: 0.75rem;
+      }
+    }
+  </style>
+<style>
+
+        .status-box {
+          margin: 1.5rem 0 0;
+          padding: 1.15rem 1.2rem;
+          border-radius: 0.95rem;
+          background: linear-gradient(135deg, rgba(40, 20, 70, 0.55), rgba(20, 30, 60, 0.6));
+          border: 1px solid rgba(143, 113, 255, 0.28);
+          box-shadow: 0 10px 24px rgba(0,0,0,0.25);
+        }
+        .status-box p { margin: 0 0 0.55rem; color:#e7ecff; }
+        .status-box p:last-child { margin-bottom: 0; }
+        
+</style></head>
+<body>
+<header class="brand-banner">
+<div class="brand-inner">
+<div class="brand-row">
+<div class="brand-logo-wrap"></div>
+<h1 class="brand-wordmark">Nebulous</h1>
+</div>
+<p class="brand-tagline">Where uncertainty becomes innovation.</p>
+</div>
+</header>
+<nav class="top-nav">
+<div class="nav-inner">
+<a class="nav-logo" href="index.html">
+<div class="nav-logo-icon"></div>
+<span class="nav-logo-text">Nebulous</span>
+</a>
+<div class="nav-links">
+<div class="dropdown">
+<a class="dropbtn" href="index.html">About</a>
+<div class="dropdown-content">
+<a class="dropdown-project-link" href="mission-vision.html">
+<span class="dropdown-project-title">Mission and Vision</span>
+</a>
+<a class="dropdown-project-link" href="why-nebulous.html">
+<span class="dropdown-project-title">Why Nebulous?</span>
+</a>
+<a class="dropdown-project-link" href="who-nebulous-for.html">
+<span class="dropdown-project-title">Who is Nebulous for?</span>
+</a>
+</div>
+</div>
+<a href="impacts.html">Broader Impacts</a>
+<div class="dropdown">
+<button class="dropbtn" style="color:#ffffff;text-shadow:0 0 8px rgba(144,216,255,0.7);">Research</button>
+<div class="dropdown-content research-menu">
+<a class="dropdown-project-link" href="research.html">
+<span class="dropdown-project-title">Research overview</span>
+<span class="dropdown-project-subtitle">Cross-cutting themes and active lines of work</span>
+</a>
+<a class="dropdown-project-link" href="eclipse.html">
+<span class="dropdown-project-title">ECLIPSE</span>
+<span class="dropdown-project-subtitle">Nebulous software framework</span>
+</a>
+<a class="dropdown-project-link" href="drift.html">
+<span class="dropdown-project-title">SOAR</span>
+<span class="dropdown-project-subtitle">Optimization of spacecraft designs</span>
+</a>
+<a class="dropdown-project-link" href="facet.html">
+<span class="dropdown-project-title">FACET</span>
+<span class="dropdown-project-subtitle">Design of optimized antennas</span>
+</a>
+<a class="dropdown-project-link" href="leo.html">
+<span class="dropdown-project-title">LEO</span>
+<span class="dropdown-project-subtitle">Design of optimized antenna arrays</span>
+</a>
+<a class="dropdown-project-link" href="origami.html">
+<span class="dropdown-project-title">ORIGAMI</span>
+<span class="dropdown-project-subtitle">Optimization of deployability</span>
+</a>
+</div>
+</div>
+<a href="publications.html">Publications</a>
+<a href="team.html">The Team</a>
+<a href="contact.html">Contact Us</a>
+</div>
+</div>
+</nav>
+<div class="nav-accent"></div>
+<main>
+<section id="intro">
+<h2>LEO: cLuster Evolved Observatory</h2>
+<p class="intro-text">
+        LEO is an AI-driven framework for designing <span class="intro-highlight">antenna arrays and observatory clusters</span>. By co-optimizing element topology and relative placement simultaneously, LEO leverages evolutionary, multi-objective optimization to navigate complex trade spaces, ensuring robust performance under real-world mission constraints.
+      </p>
+<div class="graphic-container">
+<img alt="A distributed antenna array observatory deployed on a snowy Antarctic ice sheet with mountains in the background." src="images/leo.jpg"/>
+</div>
+<p class="graphic-caption">(Concept: Distributed observatory array deployed in extreme environments)</p>
+</section>
+<section id="goal">
+<h2>Goal &amp; Motivation</h2>
+<p>
+        LEO applies AI-guided design to distributed observatories, antenna arrays, sensing systems, and communication architectures, where performance depends not only on individual element design, but on configuration, coupling effects, environmental conditions, and mission- or application-driven tradeoffs. Evolutionary, multi-objective methods can explore these large design spaces, identify robust solutions, and quantify performance and uncertainty in ways that are difficult to achieve through expert-driven iteration alone.
+      </p>
+<p>
+        A central driver is operational realism: advanced system design must satisfy aggressive performance goals within tight cost, schedule, risk, and deployment constraints. LEO supports faster, more defensible trade studies early in formulation -- when configuration choices have the highest leverage and late-stage changes are most costly, while maintaining physics-based evaluation and traceability to system requirements.
+      </p>
+<div class="grid">
+<div class="card">
+<h3>Primary objective</h3>
+<p>
+            Enable end-to-end, requirement-driven optimization of observatory clusters by co-designing
+            <span class="highlight">array element topology</span> and <span class="highlight">relative placement</span>.
+          </p>
+</div>
+<div class="card">
+<h3>Why evolutionary optimization</h3>
+<p>
+            Array design spaces are high-dimensional and strongly coupled; evolutionary search supports rapid exploration,
+            multi-objective trade-offs, and discovery of non-intuitive configurations with interpretable trade spaces.
+          </p>
+</div>
+</div>
+</section>
+
+
+<section id="results">
+<h2>Results &amp; Updates</h2>
+<div class="milestone-box">
+<strong>Upcoming IPN paper:</strong> Coming August 15th, 2026.
+      </div>
+</section><section id="who">
+<h2>Who are we?</h2>
+<p style="margin:0;">
+</p>
+<div aria-label="Collaborators" class="team-section">
+<h3>Main Contributors/Developers</h3>
+<div class="people-grid">
+<div class="person-card">
+<img alt="Portrait of Dr. Julie Rolla" class="avatar" src="images/julie.jpg"/>
+<p class="person-name">Dr. Julie Rolla</p>
+<p class="person-meta"><em>Principal Investigator (PI)</em><br/>NASA Jet Propulsion Laboratory</p>
+</div>
+<div class="person-card">
+<img alt="Portrait of Dr. Amy Connolly" class="avatar" src="images/amy.jpg"/>
+<p class="person-name">Dr. Amy Connolly</p>
+<p class="person-meta">Professor, Astroparticle Physics<br/>The Ohio State University</p>
+</div>
+<div class="person-card">
+<img alt="Portrait of Charles Ofria" class="avatar" src="images/charles.jpg"/>
+<p class="person-name">Dr. Charles Ofria</p>
+<p class="person-meta">Professor, Computer Science &amp; Engineering<br/>Michigan State University</p>
+</div>
+<div class="person-card">
+<img alt="Portrait of Bryan Reynolds" class="avatar" src="images/bryan.JPG"/>
+<p class="person-name">Dr. Bryan Reynolds</p>
+<p class="person-meta">Physicist / EM Engineer<br/>Remcom</p>
+</div>
+<div class="person-card">
+<img alt="Portrait of Emily Dolson" class="avatar" src="images/emily.jpg"/>
+<p class="person-name">Dr. Emily Dolson</p>
+<p class="person-meta">Professor, Computer Science &amp; Engineering<br/>Michigan State University</p>
+</div>
+<div class="person-card">
+<img alt="Portrait of Wolfgang Banzhaf" class="avatar" src="images/wolfgang.jpg"/>
+<p class="person-name">Dr. Wolfgang Banzhaf</p>
+<p class="person-meta">Professor, AI / Evo. Computation<br/>Michigan State University</p>
+</div>
+<div class="person-card">
+<img alt="Portrait of Anselmo Pontes" class="avatar" src="images/anselmo.jpg"/>
+<p class="person-name">Dr. Anselmo Pontes</p>
+<p class="person-meta">Principal Scientist<br/>Autogenetics Research Lab</p>
+</div>
+<div class="person-card">
+<img alt="Portrait of Rajiv Ramnath" class="avatar" src="images/rajiv.jpg"/>
+<p class="person-name">Dr. Rajiv Ramnath</p>
+<p class="person-meta">Professor of Practice, Computer Science &amp; Engineering<br/>The Ohio State University</p>
+</div>
+</div>
+</div>
+<div aria-label="Students" class="team-section">
+<h3>Students</h3>
+<div class="people-grid">
+<div class="person-card">
+<img alt="Portrait of Kate Skoceles" class="avatar" src="images/kate.jpg"/>
+<p class="person-name">Kate Skoceles</p>
+<p class="person-meta">PhD Candidate<br/>Michigan State University</p>
+</div>
+<div class="person-card">
+<img alt="Portrait of Aman Hafez" class="avatar" src="images/Aman.jpg"/>
+<p class="person-name">Aman Hafez</p>
+<p class="person-meta">PhD Candidate<br/>The Ohio State University</p>
+</div>
+<div class="person-card">
+<img alt="Portrait of Jacob Weiler" class="avatar" src="images/jacob.jpg"/>
+<p class="person-name">Jacob Weiler</p>
+<p class="person-meta">PhD Candidate<br/>The Ohio State University</p>
+</div>
+</div>
+</div>
+</section></main>
+<footer style="text-align:center;padding:1.25rem 1rem 1.5rem;font-size:0.85rem;color:#bbb;border-top:1px solid rgba(255,255,255,0.1);">
+<p>© 2026 Nebulous Project – Where uncertainty becomes innovation.</p>
+</footer>
+</body>
+</html>

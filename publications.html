@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Publications – Nebulous</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="style.css" />
+
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet" />
+
+  <style>
+    /* === Global background (galaxy) === */
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.5; /* Slightly tighter line height */
+      color: #f4f4ff;
+      background:
+        radial-gradient(circle at 15% 0%, #6933c7 0, transparent 55%),
+        radial-gradient(circle at 80% 100%, #00b7ff 0, transparent 55%),
+        radial-gradient(circle at 10% 100%, #24185c 0, #020317 55%);
+      background-attachment: fixed;
+    }
+
+    main section {
+      max-width: 850px; /* Slightly narrower for better reading focus */
+      margin: 0 auto;
+      padding: 2.5rem 2rem;
+      background: rgba(6, 7, 26, 0.9);
+      border-radius: 1rem;
+      box-shadow: 0 18px 40px rgba(0, 0, 0, 0.45);
+      backdrop-filter: blur(10px);
+      margin-top: 2rem;
+      margin-bottom: 3rem;
+    }
+
+    /* === Specific Styling for the Intro Section === */
+    #intro {
+      text-align: center;
+      padding-bottom: 2rem;
+      border-bottom: 1px solid rgba(144, 216, 255, 0.1);
+      margin-bottom: 2rem;
+    }
+
+    #intro h2 {
+      font-size: 1.75rem; /* Reduced from 2.2rem */
+      margin-bottom: 0.75rem;
+      text-shadow: 0 0 15px rgba(144, 216, 255, 0.4);
+      margin-top: 0;
+      font-weight: 500; /* Lighter weight looks sleeker */
+    }
+
+    #intro p.intro-text {
+      font-size: 1rem; /* Reduced from 1.15rem */
+      line-height: 1.6;
+      color: #d8e1ff;
+      max-width: 680px; /* Tighter width */
+      margin-left: auto;
+      margin-right: auto;
+      font-weight: 300;
+    }
+
+    .intro-highlight {
+      color: #ff7fd1;
+      font-weight: 500;
+    }
+
+    a {
+      color: #90d8ff;
+      text-decoration: none;
+      transition: color 0.2s ease;
+    }
+    
+    a:hover {
+      color: #ffffff;
+      text-decoration: underline;
+    }
+
+    /* === Navigation bar === */
+    .top-nav {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      background: #050816;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.6);
+    }
+
+    .nav-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.5rem 1.5rem;
+    }
+
+    .nav-logo {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      text-decoration: none;
+    }
+
+    .nav-logo-icon {
+      height: 28px;
+      width: 28px;
+      border-radius: 50%;
+      background:
+        radial-gradient(circle at 30% 30%, #ffffff 0, rgba(255, 255, 255, 0.05) 35%, transparent 70%),
+        radial-gradient(circle, rgba(143, 113, 255, 0.9), rgba(143, 113, 255, 0.1) 65%, transparent 90%);
+      box-shadow: 0 0 12px rgba(143, 113, 255, 0.9);
+      flex-shrink: 0;
+    }
+
+    .nav-logo-text {
+      font-family: "Orbitron", system-ui, sans-serif;
+      font-size: 0.9rem;
+      font-weight: 700;
+      background: linear-gradient(120deg, #ffb347, #ff6fd8, #9b5cff, #24c1ff);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 1.4rem;
+    }
+
+    .nav-links a, .dropbtn {
+      text-decoration: none;
+      color: #e1e6ff;
+      font-size: 0.85rem; /* Sleeker font size */
+      padding: 0.3rem 0;
+      background: transparent;
+      border: none;
+      font: inherit;
+      cursor: pointer;
+      font-weight: 500;
+      letter-spacing: 0.02em;
+    }
+
+    .nav-links a:hover, .dropbtn:hover {
+      color: #ffffff;
+      text-shadow: 0 0 8px rgba(144, 216, 255, 0.7);
+    }
+
+    .dropdown { position: relative; display: inline-block; }
+
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      left: 0;
+      background-color: #05001a;
+      min-width: 220px;
+      box-shadow: 0 12px 30px rgba(0,0,0,0.5);
+      border-radius: 0.6rem;
+      z-index: 30;
+      padding: 0.4rem 0;
+      border: 1px solid rgba(144, 216, 255, 0.35);
+    }
+
+    .research-menu { min-width: 320px; }
+    .about-menu { min-width: 280px; }
+
+    .dropdown-content a {
+      display: block;
+      padding: 0.45rem 0.9rem;
+      font-size: 0.85rem;
+      color: #e4e9ff;
+      text-decoration: none;
+      white-space: nowrap;
+    }
+
+    .dropdown-content a:hover {
+      background: radial-gradient(circle at 0 0, rgba(255, 111, 216, 0.3), transparent 60%);
+      color: #ffffff;
+      text-decoration: none;
+    }
+
+    .dropdown:hover .dropdown-content { display: block; }
+
+    .dropdown-project-link { padding-top: 0.5rem; padding-bottom: 0.5rem; }
+    .dropdown-project-title { display: block; font-size: 0.85rem; font-weight: 500; }
+    .dropdown-project-subtitle { display: block; font-size: 0.75rem; opacity: 0.8; margin-top: 0.12rem; color: #b9c3ff; white-space: normal; }
+
+    .nav-accent {
+      height: 2px; /* Thinner accent line */
+      background: linear-gradient(90deg, #5b2cd3, #00c9ff);
+    }
+
+    /* === Page typography === */
+    h2, h3 { color: #fdf4ff; margin-top: 0; }
+    
+    h2 { font-family: "Orbitron", sans-serif; letter-spacing: 0.05em; margin-bottom: 1.5rem; }
+    
+    /* Section Headers */
+    h3 { 
+      font-family: "Orbitron", sans-serif; 
+      color: #90d8ff; 
+      margin-bottom: 0.8rem; 
+      margin-top: 1.5rem;
+      font-size: 1.1rem; /* Reduced from 1.3rem */
+      letter-spacing: 0.05em;
+      border-left: 3px solid #ff7fd1; /* Thinner accent border */
+      padding-left: 0.8rem;
+    }
+
+    /* === Clean Publication List Styles === */
+    .paper-links {
+      display: grid;
+      gap: 0.85rem; /* Tighter gap */
+    }
+
+    /* The individual publication card */
+    .paper-link {
+      display: flex;
+      align-items: center; /* Center align items vertically */
+      gap: 1rem;
+      text-decoration: none;
+      border-radius: 0.6rem;
+      padding: 1rem; /* Reduced padding */
+      border: 1px solid rgba(144, 216, 255, 0.1);
+      background: rgba(10, 14, 40, 0.4); 
+      color: #e7ecff;
+      transition: all 0.2s ease;
+    }
+    
+    /* Hover effect for publication cards */
+    .paper-link:hover {
+      border-color: rgba(144, 216, 255, 0.4);
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+      transform: translateY(-1px);
+      text-decoration: none;
+      background: rgba(18, 22, 50, 0.7);
+    }
+
+    .paper-icon-box {
+      flex-shrink: 0;
+      width: 38px; /* Reduced from 48px */
+      height: 38px;
+      background: rgba(144, 216, 255, 0.08);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #90d8ff;
+      border: 1px solid rgba(144, 216, 255, 0.2);
+    }
+    
+    /* Adjust svg size inside box */
+    .paper-icon-box svg {
+        width: 20px;
+        height: 20px;
+    }
+
+    .paper-content {
+      flex-grow: 1;
+    }
+
+    .paper-title {
+      display: block;
+      color: #ffffff;
+      font-weight: 600; /* Lighter weight */
+      font-size: 0.95rem; /* Reduced from 1.05rem */
+      margin-bottom: 0.3rem;
+      font-family: "Space Grotesk", sans-serif;
+      line-height: 1.35;
+    }
+
+    .paper-meta {
+      display: flex;
+      gap: 0.6rem;
+      flex-wrap: wrap;
+      align-items: center;
+      color: #b9c3ff;
+      font-size: 0.8rem; /* Reduced from 0.9rem */
+    }
+
+    /* === Color Coded Badges for Readability === */
+    .meta-badge {
+      display: inline-block;
+      padding: 0.15rem 0.5rem;
+      border-radius: 4px;
+      font-size: 0.7rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    /* Blue for FACET */
+    .badge-facet {
+      background: rgba(144, 216, 255, 0.15);
+      border: 1px solid rgba(144, 216, 255, 0.3);
+      color: #cceeff;
+    }
+
+    /* Orange/Gold for ECLIPSE */
+    .badge-eclipse {
+      background: rgba(255, 179, 71, 0.15);
+      border: 1px solid rgba(255, 179, 71, 0.3);
+      color: #ffdec2;
+    }
+
+    /* Purple for SOAR */
+    .badge-drift {
+      background: rgba(216, 144, 255, 0.15);
+      border: 1px solid rgba(216, 144, 255, 0.3);
+      color: #f3ccff;
+    }
+
+    /* Pink for Review */
+    .badge-review {
+      background: rgba(255, 127, 209, 0.15);
+      border: 1px solid rgba(255, 127, 209, 0.3);
+      color: #ffc2e9;
+    }
+
+    @media (max-width: 800px) {
+      .nav-inner { flex-direction: column; align-items: flex-start; gap: 0.35rem; }
+      .nav-links { flex-wrap: wrap; gap: 0.75rem; }
+      
+      .paper-link { padding: 0.9rem; gap: 0.8rem; }
+      .paper-icon-box { width: 34px; height: 34px; }
+      .paper-title { font-size: 0.9rem; }
+    }
+  </style>
+</head>
+
+<body>
+  <header class="brand-banner">
+    <div class="brand-inner">
+      <div class="brand-row">
+        <div class="brand-logo-wrap"></div>
+        <h1 class="brand-wordmark">Nebulous</h1>
+      </div>
+      <p class="brand-tagline">Where uncertainty becomes innovation.</p>
+    </div>
+  </header>
+
+  <nav class="top-nav">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-logo">
+        <div class="nav-logo-icon"></div>
+        <span class="nav-logo-text">Nebulous</span>
+      </a>
+
+      <div class="nav-links">
+<div class="dropdown">
+<a class="dropbtn" href="index.html">About</a>
+<div class="dropdown-content">
+<a class="dropdown-project-link" href="mission-vision.html">
+<span class="dropdown-project-title">Mission and Vision</span>
+</a>
+<a class="dropdown-project-link" href="why-nebulous.html">
+<span class="dropdown-project-title">Why Nebulous?</span>
+</a>
+<a class="dropdown-project-link" href="who-nebulous-for.html">
+<span class="dropdown-project-title">Who is Nebulous for?</span>
+</a>
+</div>
+</div>
+<a href="impacts.html">Broader Impacts</a>
+<div class="dropdown">
+<button class="dropbtn">Research</button>
+<div class="dropdown-content research-menu">
+<a class="dropdown-project-link" href="research.html">
+<span class="dropdown-project-title">Research overview</span>
+<span class="dropdown-project-subtitle">Cross-cutting themes and active lines of work</span>
+</a>
+<a class="dropdown-project-link" href="eclipse.html">
+<span class="dropdown-project-title">ECLIPSE</span>
+<span class="dropdown-project-subtitle">Nebulous software framework</span>
+</a>
+<a class="dropdown-project-link" href="drift.html">
+<span class="dropdown-project-title">SOAR</span>
+<span class="dropdown-project-subtitle">Optimization of spacecraft designs</span>
+</a>
+<a class="dropdown-project-link" href="facet.html">
+<span class="dropdown-project-title">FACET</span>
+<span class="dropdown-project-subtitle">Design of optimized antennas</span>
+</a>
+<a class="dropdown-project-link" href="leo.html">
+<span class="dropdown-project-title">LEO</span>
+<span class="dropdown-project-subtitle">Design of optimized antenna arrays</span>
+</a>
+<a class="dropdown-project-link" href="origami.html">
+<span class="dropdown-project-title">ORIGAMI</span>
+<span class="dropdown-project-subtitle">Optimization of deployability</span>
+</a>
+</div>
+</div>
+<a href="publications.html" style="color:#ffffff;text-shadow:0 0 8px rgba(144,216,255,0.7);">Publications</a>
+<a href="team.html">The Team</a>
+<a href="contact.html">Contact Us</a>
+</div>
+    </div>
+  </nav>
+
+  <div class="nav-accent"></div>
+
+  <main>
+    <section id="intro">
+      <h2>Publications & Outputs</h2>
+    </section>
+
+    <section>
+      <h3 style="margin-top: 0;">Published</h3>
+      <div class="paper-links" aria-label="Published papers">
+        
+        <div class="paper-link" role="article">
+          <div class="paper-icon-box" style="color: #ffb347; border-color: rgba(255, 179, 71, 0.4); background: rgba(255, 179, 71, 0.1);">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+          </div>
+          <div class="paper-content">
+            <a class="paper-title" href="https://arxiv.org/pdf/2601.05098" target="_blank" rel="noopener">ECLIPSE: An Evolutionary Computation Library for Instrumentation Prototyping in Scientific Engineering</a>
+            <div class="paper-meta">
+              <span class="meta-badge badge-eclipse">ECLIPSE</span>
+              <span>arXiv:2601.05098 • Jan 2026</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="paper-link" role="article">
+          <div class="paper-icon-box" style="color: #d890ff; border-color: rgba(216, 144, 255, 0.4); background: rgba(216, 144, 255, 0.1);">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+          </div>
+          <div class="paper-content">
+            <a class="paper-title" href="https://ipnpr.jpl.nasa.gov/progress_report/42-244/42-244B.html" target="_blank" rel="noopener">A Methodology for Evolving Aerodynamically Optimal Spacecraft in the Free Molecular Flow Conditions of Very Low Earth Orbits</a>
+            <div class="paper-meta">
+              <span class="meta-badge badge-drift">SOAR</span>
+              <span>IPN Progress Report 42-244B</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="paper-link" role="article">
+          <div class="paper-icon-box">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+          </div>
+          <div class="paper-content">
+            <a class="paper-title" href="https://ipnpr.jpl.nasa.gov/progress_report/42-234/42-234A.pdf" target="_blank" rel="noopener">Design of 3D Antenna Geometries Using Genetic Algorithms</a>
+            <div class="paper-meta">
+              <span class="meta-badge badge-facet">FACET</span>
+              <span>IPN Progress Report 42-234A</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="paper-link" role="article">
+          <div class="paper-icon-box">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+          </div>
+          <div class="paper-content">
+            <a class="paper-title" href="https://ipnpr.jpl.nasa.gov/progress_report/42-237/42-237D.pdf" target="_blank" rel="noopener">Design of Antennas from Primitive Shapes Using Genetic Algorithms</a>
+            <div class="paper-meta">
+              <span class="meta-badge badge-facet">FACET</span>
+              <span>IPN Progress Report 42-237D</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="paper-link" role="article">
+          <div class="paper-icon-box">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+          </div>
+          <div class="paper-content">
+            <a class="paper-title" href="https://ipnpr.jpl.nasa.gov/progress_report/42-242/42-242A.pdf" target="_blank" rel="noopener">Designing Optimized Antennas for Science Applications Using Evolutionary Algorithms</a>
+            <div class="paper-meta">
+              <span class="meta-badge badge-facet">FACET</span>
+              <span>IPN Progress Report 42-242A</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="paper-link" role="article">
+          <div class="paper-icon-box">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+          </div>
+          <div class="paper-content">
+            <a class="paper-title" href="https://usncursi.org/archive/nrsm/2025/papers/1255.pdf" target="_blank" rel="noopener">Evolving Antennas for Directional Radio Sensitivity</a>
+            <div class="paper-meta">
+              <span class="meta-badge badge-facet">FACET</span>
+              <span>Second place, paper competition at the National Radio Science Meeting</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <h3>In Development</h3>
+      <div class="paper-links" aria-label="Manuscripts in development">
+
+        <div class="paper-link" role="article" style="cursor: default; opacity: 0.85;">
+          <div class="paper-icon-box" style="color: #90d8ff; border-color: rgba(144, 216, 255, 0.4); background: rgba(144, 216, 255, 0.1);">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+          </div>
+          <div class="paper-content">
+            <span class="paper-title">LEO paper in preparation</span>
+            <div class="paper-meta">
+              <span class="meta-badge badge-facet">LEO</span>
+              <span>Manuscript in development</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <h3>In Review</h3>
+      <div class="paper-links" aria-label="In review papers">
+        <div class="paper-link" role="article" style="cursor: default; opacity: 0.85;">
+          <div class="paper-icon-box" style="color: #ff7fd1; border-color: rgba(255, 127, 209, 0.4); background: rgba(255, 127, 209, 0.1);">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+          </div>
+          <div class="paper-content">
+            <span class="paper-title">AI for Instrument Design: A Blue Sky Studies Workshop</span>
+            <div class="paper-meta">
+              <span class="meta-badge badge-review">Review</span>
+              <span>Manuscript</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer style="text-align:center;padding:1.25rem 1rem 1.5rem;font-size:0.8rem;color:#bbb;border-top:1px solid rgba(255,255,255,0.1);">
+    <p>&copy; 2026 Nebulous Project – Where uncertainty becomes innovation.</p>
+  </footer>
+</body>
+</html>

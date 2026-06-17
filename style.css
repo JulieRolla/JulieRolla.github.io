@@ -1,0 +1,270 @@
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  line-height: 1.5;
+}
+
+.brand-banner {
+  background: linear-gradient(90deg, #5b2cd3, #3a2575, #061f3b);
+  padding: 1.2rem 1.5rem 1.7rem;
+  color: #ffffff;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.55);
+}
+
+.brand-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.brand-row {
+  display: flex;
+  align-items: center;
+  gap: 0.9rem;
+}
+
+.brand-logo-wrap {
+  height: 56px;
+  width: 56px;
+  border-radius: 50%;
+  background:
+    radial-gradient(circle at 30% 30%, #ffffff 0, rgba(255, 255, 255, 0.05) 35%, transparent 70%),
+    radial-gradient(circle, rgba(143, 113, 255, 0.9), rgba(143, 113, 255, 0.1) 65%, transparent 90%);
+  box-shadow: 0 0 18px rgba(143, 113, 255, 0.8);
+  flex-shrink: 0;
+}
+
+.brand-wordmark {
+  font-family: "Orbitron", system-ui, sans-serif;
+  font-weight: 500;
+  font-size: 2.4rem;
+  line-height: 1;
+  font-synthesis: none;
+  margin: 0;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  background: linear-gradient(90deg, #ff7db7, #ff7fd1, #7ec8ff);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  text-shadow:
+    0 0 14px rgba(255, 111, 216, 0.7),
+    0 0 26px rgba(65, 205, 255, 0.65);
+}
+
+.brand-tagline {
+  margin: 0.7rem 0 0;
+  font-family: "Space Grotesk", system-ui, sans-serif;
+  font-weight: 500;
+  line-height: 1.2;
+  font-synthesis: none;
+  font-size: 0.98rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  text-align: center;
+  background: linear-gradient(90deg, #ffffff, #d7f2ff);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  text-shadow: 0 0 10px rgba(151, 231, 255, 0.85);
+}
+
+@media (max-width: 800px) {
+  .brand-row {
+    justify-content: center;
+  }
+
+  .brand-tagline {
+    text-align: center;
+  }
+}
+
+.hero {
+  padding: 4rem 1.5rem 3rem;
+  text-align: center;
+  background: #040714;
+  color: #f5f5f5;
+}
+
+.hero h1 {
+  margin-bottom: 0.5rem;
+  font-size: 2.8rem;
+}
+
+.hero p {
+  max-width: 600px;
+  margin: 0.5rem auto 1.5rem;
+}
+
+.btn, .btn-outline {
+  display: inline-block;
+  margin: 0.25rem;
+  padding: 0.75rem 1.5rem;
+  text-decoration: none;
+  border-radius: 999px;
+  font-weight: 500;
+}
+
+.btn {
+  background: #1e88e5;
+  color: white;
+}
+
+.btn-outline {
+  border: 1px solid #1e88e5;
+  color: #1e88e5;
+}
+
+.top-nav {
+  position: sticky;
+  top: 0;
+  background: white;
+  padding: 0.5rem 1rem;
+  border-bottom: 1px solid #eee;
+  text-align: center;
+}
+
+.top-nav a {
+  margin: 0 0.5rem;
+  text-decoration: none;
+  color: #333;
+  font-size: 0.95rem;
+}
+
+section {
+  padding: 2.5rem 1.5rem;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+h2 {
+  margin-top: 0;
+  margin-bottom: 1rem;
+}
+
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1.5rem;
+}
+
+.card {
+  border: 1px solid #eee;
+  border-radius: 0.75rem;
+  padding: 1.25rem;
+  background: #fafafa;
+}
+
+footer {
+  text-align: center;
+  padding: 1rem;
+  font-size: 0.85rem;
+  color: #666;
+  border-top: 1px solid #eee;
+}
+
+/* Shared site chrome. These rules intentionally override page-local copies. */
+.brand-banner {
+  padding: 1.2rem 1.5rem 1.7rem !important;
+}
+
+.brand-inner,
+.nav-inner {
+  max-width: 1100px !important;
+}
+
+.brand-row {
+  display: flex !important;
+  align-items: center !important;
+  gap: 0.9rem !important;
+}
+
+.brand-logo-wrap {
+  width: 56px !important;
+  height: 56px !important;
+}
+
+.brand-wordmark {
+  font-family: "Orbitron", system-ui, sans-serif !important;
+  font-size: 2.4rem !important;
+  line-height: 1 !important;
+  font-weight: 500 !important;
+  letter-spacing: 0.18em !important;
+  margin: 0 !important;
+}
+
+.brand-tagline {
+  font-family: "Space Grotesk", system-ui, sans-serif !important;
+  font-size: 0.98rem !important;
+  line-height: 1.2 !important;
+  font-weight: 500 !important;
+  letter-spacing: 0.22em !important;
+}
+
+.top-nav {
+  padding: 0 !important;
+  text-align: initial !important;
+}
+
+.nav-inner {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  padding: 0.6rem 1.5rem !important;
+}
+
+.nav-logo-icon {
+  width: 30px !important;
+  height: 30px !important;
+}
+
+.nav-logo-text {
+  font-family: "Orbitron", system-ui, sans-serif !important;
+  font-size: 1rem !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.16em !important;
+}
+
+.nav-links {
+  display: flex !important;
+  align-items: center !important;
+  gap: 1.4rem !important;
+}
+
+.nav-links a,
+.dropbtn {
+  margin: 0 !important;
+  font-family: inherit !important;
+  font-size: 0.92rem !important;
+  font-weight: 400 !important;
+  letter-spacing: 0 !important;
+  padding: 0.3rem 0 !important;
+}
+
+.dropdown-content,
+.dropdown-content a,
+.dropdown-project-link,
+.dropdown-project-title,
+.dropdown-project-subtitle {
+  text-align: center !important;
+}
+
+.nav-accent {
+  height: 4px !important;
+}
+
+main #intro > h2,
+main .page-intro > h2 {
+  font-family: "Orbitron", system-ui, sans-serif !important;
+  font-size: 1.9rem !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.12em !important;
+  line-height: 1.2 !important;
+  text-transform: uppercase !important;
+  margin: 0.1rem 0 0.7rem !important;
+  background: linear-gradient(90deg, #ffb6ff, #7ec8ff) !important;
+  -webkit-background-clip: text !important;
+  background-clip: text !important;
+  color: transparent !important;
+  text-shadow: 0 0 14px rgba(170, 227, 255, 0.55) !important;
+  text-align: center !important;
+}
