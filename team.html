@@ -179,7 +179,8 @@
       text-decoration: none;
     }
 
-    .dropdown:hover .dropdown-content {
+    .dropdown:hover .dropdown-content,
+    .dropdown.active .dropdown-content {
       display: block;
     }
 
@@ -346,8 +347,9 @@
                   radial-gradient(circle at 90% 100%, #00b7ff 0, transparent 60%),
                   #050016;
       padding: 2.75rem 1.5rem 3rem;
+      margin-top: 2.5rem;
       border-top: 1px solid rgba(255, 255, 255, 0.08);
-      /* Ensure it sits below the new banner naturally */
+      /* Ensure it sits below the institution logos section naturally */
     }
 
     .join-inner {
@@ -645,8 +647,66 @@
 <img alt="Remcom" class="remcom-logo" src="images/remcom.jpg"/>
 </div>
 </section>
+<section class="join-banner">
+  <div class="join-inner">
+    <h2>Join Nebulous</h2>
+    <p>
+      Postdocs and collaborators are encouraged to have strong foundations in physics,
+      computer science, or engineering — with relevant expertise in space sciences,
+      evolutionary computation and optimization, AI/ML, aerospace engineering, or
+      science instrument design.
+    </p>
+    <p>
+      If you bring curiosity and creativity — and you enjoy exploring new approaches to hard design problems — we’d be glad to hear from you.
+    </p>
+  </div>
+</section>
 <footer style="text-align:center;padding:1.25rem 1rem 1.5rem;font-size:0.85rem;color:#bbb;border-top:1px solid rgba(255,255,255,0.1);">
 <p>© 2026 Nebulous Project – Where uncertainty becomes innovation.</p>
 </footer>
+<script>
+  // Handle dropdown menu clicks for mobile and desktop
+  document.addEventListener('DOMContentLoaded', function() {
+    const dropdownButtons = document.querySelectorAll('.dropbtn');
+    
+    dropdownButtons.forEach(button => {
+      button.addEventListener('click', function(e) {
+        if (this.tagName === 'A') {
+          return; // Allow normal navigation for link-based buttons like the homepage About link
+        }
+
+        const dropdown = this.closest('.dropdown');
+        const isActive = dropdown.classList.contains('active');
+        
+        // Close all other dropdowns
+        document.querySelectorAll('.dropdown.active').forEach(d => {
+          if (d !== dropdown) {
+            d.classList.remove('active');
+          }
+        });
+        
+        // Toggle current dropdown
+        dropdown.classList.toggle('active');
+        e.preventDefault();
+      });
+    });
+    
+    // Close dropdowns when clicking outside
+    document.addEventListener('click', function(e) {
+      if (!e.target.closest('.dropdown')) {
+        document.querySelectorAll('.dropdown.active').forEach(d => {
+          d.classList.remove('active');
+        });
+      }
+    });
+    
+    // Close dropdown when a link inside is clicked
+    document.querySelectorAll('.dropdown-content a').forEach(link => {
+      link.addEventListener('click', function() {
+        this.closest('.dropdown').classList.remove('active');
+      });
+    });
+  });
+</script>
 </body>
 </html>

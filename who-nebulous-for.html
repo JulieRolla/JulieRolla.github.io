@@ -438,5 +438,49 @@
   <footer style="text-align:center;padding:1.25rem 1rem 1.5rem;font-size:0.85rem;color:#bbb;border-top:1px solid rgba(255,255,255,0.1);">
     <p>&copy; 2026 Nebulous Project – Where uncertainty becomes innovation.</p>
   </footer>
+<script>
+  // Handle dropdown menu clicks for mobile and desktop
+  document.addEventListener('DOMContentLoaded', function() {
+    const dropdownButtons = document.querySelectorAll('.dropbtn');
+    
+    dropdownButtons.forEach(button => {
+      button.addEventListener('click', function(e) {
+        if (this.tagName === 'A') {
+          return; // Allow normal navigation for link-based dropdown buttons
+        }
+
+        const dropdown = this.closest('.dropdown');
+        const isActive = dropdown.classList.contains('active');
+        
+        // Close all other dropdowns
+        document.querySelectorAll('.dropdown.active').forEach(d => {
+          if (d !== dropdown) {
+            d.classList.remove('active');
+          }
+        });
+        
+        // Toggle current dropdown
+        dropdown.classList.toggle('active');
+        e.preventDefault();
+      });
+    });
+    
+    // Close dropdowns when clicking outside
+    document.addEventListener('click', function(e) {
+      if (!e.target.closest('.dropdown')) {
+        document.querySelectorAll('.dropdown.active').forEach(d => {
+          d.classList.remove('active');
+        });
+      }
+    });
+    
+    // Close dropdown when a link inside is clicked
+    document.querySelectorAll('.dropdown-content a').forEach(link => {
+      link.addEventListener('click', function() {
+        this.closest('.dropdown').classList.remove('active');
+      });
+    });
+  });
+</script>
 </body>
 </html>

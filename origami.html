@@ -1,9 +1,405 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>coming soon</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="UTF-8" />
+  <title>ORIGAMI – Coming Soon</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link href="style.css" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&family=Space+Grotesk:wght@400;500&display=swap" rel="stylesheet" />
+  <style>
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.5;
+      color: #f4f4ff;
+      background:
+        radial-gradient(circle at 15% 0%, #6933c7 0, transparent 55%),
+        radial-gradient(circle at 80% 100%, #00b7ff 0, transparent 55%),
+        radial-gradient(circle at 10% 100%, #24185c 0, #020317 55%);
+      background-attachment: fixed;
+    }
+
+    .brand-banner {
+      background: linear-gradient(90deg, #5b2cd3, #3a2575, #061f3b);
+      padding: 1.2rem 1.5rem 1.7rem;
+      color: #ffffff;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.55);
+    }
+
+    .brand-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .brand-row {
+      display: flex;
+      align-items: center;
+      gap: 0.9rem;
+    }
+
+    .brand-logo-wrap {
+      height: 56px;
+      width: 56px;
+      border-radius: 50%;
+      background:
+        radial-gradient(circle at 30% 30%, #ffffff 0, rgba(255, 255, 255, 0.05) 35%, transparent 70%),
+        radial-gradient(circle, rgba(143, 113, 255, 0.9), rgba(143, 113, 255, 0.1) 65%, transparent 90%);
+      box-shadow: 0 0 18px rgba(143, 113, 255, 0.8);
+      flex-shrink: 0;
+    }
+
+    .brand-wordmark {
+      font-family: "Orbitron", system-ui, sans-serif;
+      font-weight: 500;
+      font-size: 2.4rem;
+      line-height: 1;
+      font-synthesis: none;
+      margin: 0;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      background: linear-gradient(90deg, #ff7db7, #ff7fd1, #7ec8ff);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      text-shadow: 0 0 14px rgba(255, 111, 216, 0.7);
+    }
+
+    .brand-tagline {
+      margin: 0.75rem 0 0;
+      color: #c8d9ff;
+      max-width: 750px;
+      font-size: 1rem;
+      line-height: 1.7;
+    }
+
+    .top-nav {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      background: #050816;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.6);
+    }
+
+    .nav-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.6rem 1.5rem;
+      gap: 1rem;
+    }
+
+    .nav-logo {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      text-decoration: none;
+    }
+
+    .nav-logo-text {
+      font-family: "Orbitron", system-ui, sans-serif;
+      font-size: 1rem;
+      font-weight: 700;
+      background: linear-gradient(120deg, #ffb347, #ff6fd8, #9b5cff, #24c1ff);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .nav-links a,
+    .dropbtn {
+      color: #e1e6ff;
+      text-decoration: none;
+      font-size: 0.95rem;
+      padding: 0.3rem 0.2rem;
+      background: transparent;
+      border: none;
+      cursor: pointer;
+    }
+
+    .nav-links a:hover,
+    .dropbtn:hover {
+      color: #ffffff;
+      text-shadow: 0 0 8px rgba(144, 216, 255, 0.7);
+    }
+
+    .dropdown {
+      position: relative;
+      display: inline-block;
+    }
+
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      left: 0;
+      top: 100%;
+      background-color: #05001a;
+      min-width: 220px;
+      box-shadow: 0 12px 30px rgba(0,0,0,0.5);
+      border-radius: 0.6rem;
+      z-index: 30;
+      padding: 0.4rem 0;
+      border: 1px solid rgba(144, 216, 255, 0.35);
+    }
+
+    .dropdown:hover .dropdown-content,
+    .dropdown.active .dropdown-content {
+      display: block;
+    }
+
+    .dropdown-content a {
+      display: block;
+      padding: 0.45rem 0.9rem;
+      font-size: 0.9rem;
+      color: #e4e9ff;
+      text-decoration: none;
+      white-space: nowrap;
+    }
+
+    .dropdown-project-link {
+      padding-top: 0.5rem;
+      padding-bottom: 0.5rem;
+    }
+
+    .dropdown-project-title {
+      display: block;
+      font-size: 0.9rem;
+      font-weight: 500;
+    }
+
+    .dropdown-project-subtitle {
+      display: block;
+      font-size: 0.78rem;
+      opacity: 0.9;
+      margin-top: 0.12rem;
+      color: #b9c3ff;
+      white-space: normal;
+    }
+
+    .dropdown-content a:hover {
+      background: radial-gradient(circle at 0 0, rgba(255, 111, 216, 0.3), transparent 60%);
+      color: #ffffff;
+    }
+
+    main {
+      padding: 0 1rem 2rem;
+    }
+
+    .content-panel {
+      max-width: 900px;
+      margin: 2rem auto;
+      padding: 2.5rem 2rem;
+      background: rgba(6, 7, 26, 0.92);
+      border-radius: 1.1rem;
+      box-shadow: 0 18px 40px rgba(0, 0, 0, 0.45);
+      border: 1px solid rgba(255,255,255,0.08);
+      text-align: center;
+    }
+
+    .content-panel h1 {
+      margin: 0;
+      font-family: "Orbitron", system-ui, sans-serif;
+      font-size: 3rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      background: linear-gradient(90deg, #ffb6ff, #7ec8ff);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      text-shadow: 0 0 18px rgba(170, 227, 255, 0.85);
+    }
+
+    .content-panel p {
+      margin: 1.5rem auto 0;
+      max-width: 620px;
+      color: #d8e1ff;
+      font-size: 1rem;
+      line-height: 1.8;
+    }
+
+    .join-banner {
+      background: radial-gradient(circle at 10% 0%, #5b2cd3 0, transparent 60%),
+                  radial-gradient(circle at 90% 100%, #00b7ff 0, transparent 60%),
+                  #050016;
+      padding: 2.5rem 1.5rem 3rem;
+      margin: 0 auto 2rem;
+      max-width: 900px;
+      border-radius: 1.1rem;
+      box-shadow: 0 18px 40px rgba(0, 0, 0, 0.45);
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .join-inner {
+      max-width: 920px;
+      margin: 0 auto;
+      text-align: left;
+    }
+
+    .join-banner h2 {
+      font-family: "Orbitron", system-ui, sans-serif;
+      font-size: 1.6rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-top: 0;
+      margin-bottom: 0.9rem;
+      background: linear-gradient(90deg, #ffb6ff, #7ec8ff);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      text-shadow: 0 0 16px rgba(170, 227, 255, 0.8);
+    }
+
+    .join-banner p {
+      margin: 0 0 0.9rem;
+      font-size: 0.96rem;
+      color: #e7ecff;
+    }
+
+    footer {
+      text-align: center;
+      padding: 1.25rem 1rem 1.5rem;
+      font-size: 0.85rem;
+      color: #bbb;
+      border-top: 1px solid rgba(255,255,255,0.1);
+    }
+
+    @media (max-width: 800px) {
+      .nav-inner {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .nav-links {
+        width: 100%;
+        justify-content: flex-start;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .content-panel {
+        padding: 1.75rem 1.5rem;
+      }
+
+      .content-panel h1 {
+        font-size: 2.4rem;
+      }
+
+      .join-banner {
+        padding: 1.75rem 1rem 2rem;
+      }
+    }
+  </style>
 </head>
-<body>coming soon</body>
+<body>
+  <header class="brand-banner">
+    <div class="brand-inner">
+      <div class="brand-row">
+        <div class="brand-logo-wrap"></div>
+        <h1 class="brand-wordmark">Nebulous</h1>
+      </div>
+      <p class="brand-tagline">Where uncertainty becomes innovation.</p>
+    </div>
+  </header>
+  <nav class="top-nav">
+    <div class="nav-inner">
+      <a class="nav-logo" href="index.html">
+        <div class="nav-logo-icon"></div>
+        <span class="nav-logo-text">Nebulous</span>
+      </a>
+      <div class="nav-links">
+        <div class="dropdown">
+          <a class="dropbtn" href="index.html">About</a>
+          <div class="dropdown-content">
+            <a class="dropdown-project-link" href="mission-vision.html">Mission and Vision</a>
+            <a class="dropdown-project-link" href="why-nebulous.html">Why Nebulous?</a>
+            <a class="dropdown-project-link" href="who-nebulous-for.html">Who is Nebulous for?</a>
+          </div>
+        </div>
+        <a href="impacts.html">Broader Impacts</a>
+        <div class="dropdown">
+          <button class="dropbtn">Research</button>
+          <div class="dropdown-content research-menu">
+            <a class="dropdown-project-link" href="research.html">
+              <span class="dropdown-project-title">Research overview</span>
+              <span class="dropdown-project-subtitle">Cross-cutting themes and active lines of work</span>
+            </a>
+            <a class="dropdown-project-link" href="eclipse.html">
+              <span class="dropdown-project-title">ECLIPSE</span>
+              <span class="dropdown-project-subtitle">Nebulous software framework</span>
+            </a>
+            <a class="dropdown-project-link" href="drift.html">
+              <span class="dropdown-project-title">SOAR</span>
+              <span class="dropdown-project-subtitle">Optimization of spacecraft designs</span>
+            </a>
+            <a class="dropdown-project-link" href="facet.html">
+              <span class="dropdown-project-title">FACET</span>
+              <span class="dropdown-project-subtitle">Design of optimized antennas</span>
+            </a>
+            <a class="dropdown-project-link" href="leo.html">
+              <span class="dropdown-project-title">LEO</span>
+              <span class="dropdown-project-subtitle">Design of optimized antenna arrays</span>
+            </a>
+            <a class="dropdown-project-link" href="origami.html">
+              <span class="dropdown-project-title">ORIGAMI</span>
+              <span class="dropdown-project-subtitle">Optimization of deployability</span>
+            </a>
+          </div>
+        </div>
+        <a href="publications.html">Publications</a>
+        <a href="team.html">The Team</a>
+        <a href="contact.html">Contact Us</a>
+      </div>
+    </div>
+  </nav>
+  <div class="nav-accent"></div>
+
+  <main>
+    <section class="content-panel">
+      <h1>Coming soon!</h1>
+      <p>
+        The ORIGAMI project page is under construction. Check back soon to discover how Nebulous explores deployability and design optimization through this exciting new research track.
+      </p>
+    </section>
+  </main>
+
+  <footer>
+    <p>© 2026 Nebulous Project – Where uncertainty becomes innovation.</p>
+  </footer>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const dropdownButtons = document.querySelectorAll('.dropbtn');
+      dropdownButtons.forEach(button => {
+        button.addEventListener('click', function(e) {
+          if (this.tagName === 'A') {
+            return; // Allow normal navigation for link-based dropdown buttons
+          }
+
+          const dropdown = this.closest('.dropdown');
+          document.querySelectorAll('.dropdown.active').forEach(d => {
+            if (d !== dropdown) d.classList.remove('active');
+          });
+          dropdown.classList.toggle('active');
+          e.preventDefault();
+        });
+      });
+      document.addEventListener('click', function(e) {
+        if (!e.target.closest('.dropdown')) {
+          document.querySelectorAll('.dropdown.active').forEach(d => d.classList.remove('active'));
+        }
+      });
+    });
+  </script>
+</body>
 </html>
